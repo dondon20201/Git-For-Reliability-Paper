@@ -1,0 +1,45 @@
+{
+  "spec": "elevation/E3_spec.md",
+  "gate_cell": {
+    "form": 1,
+    "K": 12,
+    "target_predeclared": "loss_avoid_adj",
+    "target_used": "loss_avoid_adj",
+    "contingency_applied": false,
+    "contingency_rule": "fall back to ev_sens_agn if loss_avoid_adj identifiable-set coverage < 0.50",
+    "set_coverage_loss_avoid_adj": 0.926,
+    "split_coverage_loss_avoid_adj": 0.735245
+  },
+  "thresholds": {
+    "sigma_set_true_min": 0.05,
+    "ICC_set_min": 0.5
+  },
+  "observed": {
+    "M": 2000,
+    "n_subjects_median": 63,
+    "sigma_set_raw": 0.237216003238,
+    "sigma_noise": 0.145104583133329,
+    "sigma_set_true": 0.187659511205571,
+    "ICC_set": 0.6258254104076,
+    "r_sb_min": -0.800433679256985,
+    "r_sb_median": 0.541091352090553,
+    "r_sb_max": 0.736445439671141,
+    "best_minus_median": 0.195354087580587
+  },
+  "h1_verdict": "PASS",
+  "h1_pass": true,
+  "full_map": {
+    "n_cells": 50,
+    "n_cells_pass_both": 6,
+    "max_sigma_set_true": 0.249864077955247,
+    "max_ICC_set": 0.747744952075294
+  },
+  "d1_spotcheck_max_abs_diff_loss_avoid_adj": 0,
+  "d1_spotcheck_max_abs_diff_ev_sens_agn": 0.000613795744080936,
+  "g_eq_max_abs_diff": 3.33066907387547e-16,
+  "build_only": true,
+  "freeze_read": false,
+  "test_read": false,
+  "optimization_performed": false,
+  "mechanism_model_fitted": false
+}

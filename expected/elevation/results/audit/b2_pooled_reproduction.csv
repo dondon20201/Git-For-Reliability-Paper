@@ -1,0 +1,21 @@
+check,n,identical,max_abs_diff
+variance_ceiling.csv column n_subjects,5,TRUE,0
+variance_ceiling.csv column k_ref,5,TRUE,0
+variance_ceiling.csv column sigma2_obs,5,TRUE,0
+variance_ceiling.csv column sigma2_err,5,TRUE,0
+variance_ceiling.csv column sigma2_diff,5,TRUE,0
+variance_ceiling.csv column sigma2_true,5,TRUE,0
+variance_ceiling.csv column sigma2_true_lo,5,TRUE,0
+variance_ceiling.csv column sigma2_true_hi,5,TRUE,0
+variance_ceiling.csv column sigma2_diff_lo,5,TRUE,0
+variance_ceiling.csv column sigma2_diff_hi,5,TRUE,0
+variance_ceiling.csv column ceiling_fulldata,5,TRUE,0
+variance_ceiling.csv column ceiling_lo,5,TRUE,0
+variance_ceiling.csv column ceiling_hi,5,TRUE,0
+variance_ceiling.csv column k_0.7,5,TRUE,0
+variance_ceiling.csv column k_0.7_lo,5,TRUE,0
+variance_ceiling.csv column k_0.7_hi,5,TRUE,0
+variance_ceiling.csv column k_0.8,5,TRUE,0
+variance_ceiling.csv column k_0.8_lo,5,TRUE,0
+variance_ceiling.csv column k_0.8_hi,5,TRUE,0
+variance_ceiling.csv column optimization_target,5,TRUE,0

@@ -1,0 +1,2 @@
+n_problems_total,n_problems_expanded,n_problems_ambiguous_excluded,n_problems_clean_step2,n_problems_multi_outcome,n_problems_corr_nonzero,corr_note,n_loss_informative,scale_d_ev,scale_d_sd,scale_d_eloss
+210,182,28,105,77,11,"Corr != 0 problems KEPT: outcome correlation affects the joint draw of (Apay, Bpay) under feedback, not the marginal distribution or EV of either option; all features here are marginal-distribution functionals.",66,5.035910022199044,20.026786461759517,6.978848544806485

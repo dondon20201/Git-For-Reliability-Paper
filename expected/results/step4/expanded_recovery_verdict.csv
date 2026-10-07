@@ -1,0 +1,4 @@
+param,spearman_r,ci_lo,ci_hi,pass,criterion,consequence
+b_ev,0.9712835971343885,0.9638114609223885,0.976083778351308,TRUE,"Spearman(true, recovered) >= 0.7 at full expanded budget (pre-declared)",interpreted
+b_risk,0.9521494725978904,0.9415121391412055,0.9601098163600315,TRUE,"Spearman(true, recovered) >= 0.7 at full expanded budget (pre-declared)",interpreted
+b_loss,0.9070547322189288,0.8825132264935829,0.9274417710787725,TRUE,"Spearman(true, recovered) >= 0.7 at full expanded budget (pre-declared)",interpreted

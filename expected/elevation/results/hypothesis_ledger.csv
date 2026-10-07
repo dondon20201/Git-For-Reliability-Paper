@@ -1,0 +1,13 @@
+analysis,criterion,outcome,status
+H1 equal-length heterogeneity,between-set true SD >= 0.05 and set ICC >= 0.50 at the gate cell,"true SD ~0.19-0.22, covariance ICC 0.63-0.72, robust across seeds",PASS
+H2 information mechanism,"features predict held-out reliability out-of-fold, sign-consistent (sim + beyond + real)",simulation passed; real-data sign clause failed,NOT SUPPORTED
+E8 hierarchical re-estimation,partial pooling raises loss-avoidance reliability beyond its interval,change <= 0.007 SB; every 90% interval covers zero,NO RESCUE
+P3 external replication (Frey),single-measure unreliability and no-rescue replicate externally,single measures unreliable internally and over six months; aggregate reliable; no-rescue replicated,REPLICATED
+P2 joint item-information model,joint model detects a real-data mechanism it recovers under simulation,recovers planted mechanism; none on real data,EXPLORATORY NULL
+SENS mechanism sensitivity,plant-and-detect positive control fires; else fall back to the attenuation bound,positive control void; attenuation bound shows the apparent positive is overlap-inflated,DEMOTED TO BOUND
+B1 heterogeneity stability,min true SD >= 0.05 AND min set ICC >= 0.50 across seeds; covariance 90% lower bound >= 0.05,"G-B1a FAIL (bootstrap-floor ICC seed-unstable, 0.37 in 1 of 8); covariance SD robust, null ~0.016",MIXED (magnitude robust)
+B2 selection optimism,out-of-sample gain < in-sample; top-decile 90% interval vs zero,single-best ~2x optimism-inflated; top-decile lower bound above zero,PASS (transferable)
+B3 leave-one-feature-out,no expected-information-retaining drop restores the H2 pass,dropping loss exposure restores it via F2/F4 collinearity; exploratory,FAIL (localizes null to collinearity)
+C1 response style,"ICC drop >= 50% material, < 15% not-artifact, 15-50% partial",~39% ICC drop with true-variance magnitude preserved,PARTIAL / QUALIFIED
+C2 local dependence,material dependence-adjusted ICC reduction or gap beyond coherence,joint upper bound only; local-independence prediction shows no inflation signature,INCONCLUSIVE
+C3 scoring rule,"set-ranking Spearman(mean, median) >= 0.30",~0.998,ROBUST

@@ -1,0 +1,6 @@
+data/raw/
+output/
+.Rhistory
+.RData
+renv/library/
+Rplots.pdf

@@ -1,0 +1,14 @@
+check,quantity,value,threshold,passes,detail
+G0a_convergence_primary,mirt converged,1,1,TRUE,"mirt::mirt custom Binomial(20) item, EM/MML"
+G0a_finite_loadings,n nonfinite lambda,0,0,TRUE,primary target
+G0a_finite_ses,n nonfinite SE,0,0,TRUE,observed information
+G0b_degenerate_fraction,fraction flagged,0.07142857142857142,0.1,TRUE,"var 0, SE 3, |lambda|>6 3, nonfinite 0 of 42 items"
+G0c_condition_number,kappa(design),2.930053275405727,30,TRUE,"decorrelated feature design, standardized, with intercept"
+G0c_finite_feature_betas,n nonfinite beta SE,0,0,TRUE,OLS on decorrelated features
+G0d_recovery_beta_ci_lo,beta 5th pct,0.25046991354355386,0.3,TRUE,"planted 0.30, 200 replicates"
+G0d_recovery_beta_ci_hi,beta 95th pct,0.3476417801021665,0.3,TRUE,90% interval covers planted
+G0d_recovery_corr,"median Spearman(true,est lambda)",0.9457904545822867,0.6,TRUE,recovery track
+G0d_null_a_ci,beta 90% interval includes 0,1,1,TRUE,"[-0.0837, 0.0855]"
+G0d_null_b_ci,beta 90% interval includes 0,1,1,TRUE,"[-0.0379, 0.0304]; median lambda 0.0389"
+STRUCTURAL_gamma_aliasing,rank(items + d_ev_noloss) - rank(items),0,1,FALSE,gamma not separately identified with free item easiness; E8-style common-intercept reference gamma = 0.165108
+CODE_ADDED_overdispersion_null,median lambda under item-wise subject permutation,0.25233579358565467,0,NA,"real-fit median lambda 1.2194; implied rho_hat at K=12: permuted-null typical 0.7517 / top 0.9967, real fit typical 0.9469, E0 ceiling 0.5062; diagnostic only, not a pre-declared gate"

@@ -1,0 +1,9 @@
+check,expected,observed,pass
+rows,510750,510750,TRUE
+subjects (distinct SubjID),686,686,TRUE
+problems (distinct GameID),210,210,TRUE
+columns match dictionary list,TRUE,TRUE,TRUE
+reps per subject x problem,all 25,"min 25, max 25",TRUE
+one feature tuple per GameID,TRUE,TRUE,TRUE
+"feedback: trials 1-5 = 0, 6-25 = 1",TRUE,TRUE,TRUE
+block = ceiling(Trial/5),TRUE,TRUE,TRUE

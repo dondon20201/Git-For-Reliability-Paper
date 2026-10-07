@@ -1,0 +1,4 @@
+param,spearman_r,ci_lo,ci_hi,recoverable_at_14x25,criterion
+b_ev,0.9088815235260942,0.88548274866603,0.9269818461686333,TRUE,Spearman r >= 0.7 (pre-declared)
+b_risk,0.8693328213312853,0.8386519670537937,0.893036438095772,TRUE,Spearman r >= 0.7 (pre-declared)
+b_loss,0.7622966171864687,0.7126596475697734,0.8044751872492049,TRUE,Spearman r >= 0.7 (pre-declared)

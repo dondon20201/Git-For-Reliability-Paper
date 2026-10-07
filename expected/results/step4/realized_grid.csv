@@ -1,0 +1,13 @@
+regime,r,k,n_subjects,rule
+exp,20,2,686,k from 2 up to the maximum with n_subjects >= 100 (pre-declared)
+exp,20,3,686,k from 2 up to the maximum with n_subjects >= 100 (pre-declared)
+exp,20,4,686,k from 2 up to the maximum with n_subjects >= 100 (pre-declared)
+exp,20,5,686,k from 2 up to the maximum with n_subjects >= 100 (pre-declared)
+exp,20,6,686,k from 2 up to the maximum with n_subjects >= 100 (pre-declared)
+exp,20,7,686,k from 2 up to the maximum with n_subjects >= 100 (pre-declared)
+exp,20,8,686,k from 2 up to the maximum with n_subjects >= 100 (pre-declared)
+exp,20,9,686,k from 2 up to the maximum with n_subjects >= 100 (pre-declared)
+exp,20,10,686,k from 2 up to the maximum with n_subjects >= 100 (pre-declared)
+exp,20,11,670,k from 2 up to the maximum with n_subjects >= 100 (pre-declared)
+exp,20,12,577,k from 2 up to the maximum with n_subjects >= 100 (pre-declared)
+exp,20,13,471,k from 2 up to the maximum with n_subjects >= 100 (pre-declared)

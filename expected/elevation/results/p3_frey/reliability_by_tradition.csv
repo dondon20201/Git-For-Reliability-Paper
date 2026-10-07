@@ -1,0 +1,7 @@
+tradition,n_measures,n_with_retest,retest_spearman_mean,retest_spearman_median,cronbach_alpha_t1_mean,risk_tradition,frey_published_retest_mean,note
+beh,9,9,0.46035493617706286,0.5192039225867129,0.6816666666666666,TRUE,0.46,mean/median of per-measure 6-month test-retest Spearman over linked subjects
+freq,7,7,0.605334344306887,0.5249366071807542,0.6654285714285715,TRUE,0.65,mean/median of per-measure 6-month test-retest Spearman over linked subjects
+prop,21,21,0.636078286984534,0.6494408490632595,0.7377142857142857,TRUE,0.68,mean/median of per-measure 6-month test-retest Spearman over linked subjects
+cognition,1,1,0.6781319210086766,0.6781319210086766,0.564,FALSE,NA,mean/median of per-measure 6-month test-retest Spearman over linked subjects
+impuls,15,15,0.7143855708431248,0.7325633553236659,0.6024,FALSE,NA,mean/median of per-measure 6-month test-retest Spearman over linked subjects
+general_factor,37,108,0.8541732163441844,0.8541732163441844,NA,TRUE,0.85,"simple first-PC general risk factor over the 37 risk measures; Frey benchmark is the published bifactor R, a different (more powerful) aggregate"

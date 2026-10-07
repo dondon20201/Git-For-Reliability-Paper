@@ -1,0 +1,2 @@
+pair,x,y,n,n_excluded_missing,spearman,spearman_ci_lo,spearman_ci_hi,pearson,pearson_ci_lo,pearson_ci_hi,n_boot,boot_seed,bootstrap,source
+loss_avoid_adj~ev_sens_agn,loss_avoid_adj,ev_sens_agn,686,0,0.36638618638987436,0.2969897214416155,0.43400005652404494,0.36772824046029734,0.30276525874787297,0.43460318610066373,2000,20261005,"participant resample, percentile 95%",elevation/results/e0/per_subject_estimates.csv (E0 full-data points)

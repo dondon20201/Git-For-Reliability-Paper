@@ -1,0 +1,211 @@
+{
+  "spec": "elevation/E4_spec.md",
+  "primary_target": "loss_avoid_adj",
+  "secondary_target_informational": "ev_sens_agn",
+  "gate_tracks": {
+    "sim_primary": "sim_free105",
+    "real_anchor": "real_form1"
+  },
+  "K_gate": [8, 10, 12],
+  "thresholds": {
+    "gsim_spearman_min": 0.3,
+    "gsim_ci_lower_must_exceed": 0,
+    "gbeyond_boot_support_min": 0.9,
+    "greal_spearman_must_exceed": 0
+  },
+  "conservative_point_estimate_rule": "where oof_spearman_pooled and oof_spearman_repeatmean disagree, the gate uses the SMALLER (fixed in code before results)",
+  "g_sim": {
+    "per_K": [
+      {
+        "K": 8,
+        "spearman_pooled": 0.523544258502,
+        "spearman_repeatmean": 0.5262336959115,
+        "spearman_gate": 0.523544258502,
+        "ci_lo": 0.4453369473609,
+        "ci_hi": 0.5966669857218,
+        "meets_threshold": true,
+        "ci_lower_positive": true
+      },
+      {
+        "K": 10,
+        "spearman_pooled": 0.5240929167278,
+        "spearman_repeatmean": 0.5192144347347,
+        "spearman_gate": 0.5192144347347,
+        "ci_lo": 0.4487569374707,
+        "ci_hi": 0.5960278195125,
+        "meets_threshold": true,
+        "ci_lower_positive": true
+      },
+      {
+        "K": 12,
+        "spearman_pooled": 0.4678289576336,
+        "spearman_repeatmean": 0.4622989816278,
+        "spearman_gate": 0.4622989816278,
+        "ci_lo": 0.3888522263551,
+        "ci_hi": 0.5411395824643,
+        "meets_threshold": true,
+        "ci_lower_positive": true
+      }
+    ],
+    "pooled": {
+      "K_pooled": ["8", "10", "12"],
+      "spearman": 0.5051553776211,
+      "spearman_repeatmean": 0.502582370758,
+      "spearman_gate": 0.502582370758,
+      "ci_lo": 0.4578658452642,
+      "ci_hi": 0.548264569522
+    },
+    "pass": true
+  },
+  "g_beyond": {
+    "per_K": [
+      {
+        "K": 8,
+        "delta_spearman": 0.3776409321145,
+        "delta_r2": 0.179037110337,
+        "boot_support": 1,
+        "delta_ci_lo": 0.3026102415266,
+        "delta_ci_hi": 0.4581487850956,
+        "positive_margin": true,
+        "support_ok": true
+      },
+      {
+        "K": 10,
+        "delta_spearman": 0.26076465869,
+        "delta_r2": 0.1791551644972,
+        "boot_support": 1,
+        "delta_ci_lo": 0.1869505881287,
+        "delta_ci_hi": 0.3416358113612,
+        "positive_margin": true,
+        "support_ok": true
+      },
+      {
+        "K": 12,
+        "delta_spearman": 0.1741963273325,
+        "delta_r2": 0.1073781682591,
+        "boot_support": 1,
+        "delta_ci_lo": 0.09769940959645,
+        "delta_ci_hi": 0.2482994432051,
+        "positive_margin": true,
+        "support_ok": true
+      }
+    ],
+    "pooled_delta": 0.2708673060457,
+    "pooled_support": 1,
+    "pass": true
+  },
+  "g_real": {
+    "per_K": [
+      {
+        "K": 8,
+        "spearman": 0.7032470193174,
+        "spearman_repeatmean": 0.7010432943353,
+        "spearman_gate": 0.7010432943353,
+        "ci_lo": 0.6573109326687,
+        "delta_vs_base": 0.6125662753921,
+        "n_carrier": 2,
+        "n_carrier_sign_agree": 2,
+        "n_all_sign_agree": 4,
+        "positive": true,
+        "beats_base": true,
+        "carrier_signs_consistent": true
+      },
+      {
+        "K": 10,
+        "spearman": 0.7424834095806,
+        "spearman_repeatmean": 0.7432954734449,
+        "spearman_gate": 0.7424834095806,
+        "ci_lo": 0.7107266948875,
+        "delta_vs_base": 0.4955243214795,
+        "n_carrier": 3,
+        "n_carrier_sign_agree": 2,
+        "n_all_sign_agree": 2,
+        "positive": true,
+        "beats_base": true,
+        "carrier_signs_consistent": false
+      },
+      {
+        "K": 12,
+        "spearman": 0.7463773814341,
+        "spearman_repeatmean": 0.744668241018,
+        "spearman_gate": 0.744668241018,
+        "ci_lo": 0.7185934864179,
+        "delta_vs_base": 0.3842575006863,
+        "n_carrier": 3,
+        "n_carrier_sign_agree": 3,
+        "n_all_sign_agree": 5,
+        "positive": true,
+        "beats_base": true,
+        "carrier_signs_consistent": true
+      }
+    ],
+    "carrier_rule": "|beta_sim| >= 0.05",
+    "carrier_rule_source": "fixed in Code before results; E4_spec s5 names carrier features but fixes NO numeric rule",
+    "strict_all_five_rule_pass": false,
+    "carrier_threshold_flip_point": null,
+    "carrier_sweep_note": "see carrier_rule_sensitivity.csv; the sign clause fails for every per-K carrier threshold at or below the flip point and passes above it only because the carrier set empties, so the verdict is knife-edge and is disclosed rather than adjusted",
+    "pass": false
+  },
+  "robustness": {
+    "g_beyond_delta_on_conservative_estimator": [
+      {
+        "K": 8,
+        "delta_pooled_estimator": 0.3776409321145,
+        "delta_repeatmean_estimator": 0.2570896180948,
+        "still_positive": true
+      },
+      {
+        "K": 10,
+        "delta_pooled_estimator": 0.26076465869,
+        "delta_repeatmean_estimator": 0.1705392308089,
+        "still_positive": true
+      },
+      {
+        "K": 12,
+        "delta_pooled_estimator": 0.1741963273325,
+        "delta_repeatmean_estimator": 0.1086659211481,
+        "still_positive": true
+      }
+    ],
+    "g_beyond_support_jackknife": [
+      {
+        "K": 8,
+        "implied_support": 0.9951034126252,
+        "meets_threshold": true,
+        "jackknife_se": 0.1461997447155,
+        "predeclared_bootstrap_se": 0.03946338641278
+      },
+      {
+        "K": 10,
+        "implied_support": 0.9647614472119,
+        "meets_threshold": true,
+        "jackknife_se": 0.1441618995843,
+        "predeclared_bootstrap_se": 0.038213942088
+      },
+      {
+        "K": 12,
+        "implied_support": 0.8653819436331,
+        "meets_threshold": false,
+        "jackknife_se": 0.1576689315746,
+        "predeclared_bootstrap_se": 0.03762270432514
+      }
+    ],
+    "g_beyond_survives_jackknife": false,
+    "note": "the pre-declared G-beyond verdict above is computed from the pre-declared bootstrap and is NOT amended by these figures; they are reported so the report can state plainly whether G-beyond survives a defensible cluster-uncertainty estimate"
+  },
+  "h2_pass": false,
+  "h2_verdict": "FAIL",
+  "consequence_branches": {
+    "if_g_sim_or_g_beyond_fails": "H2 is NOT supported; the mechanism is reported EXPLORATORY and E5's feature-based optimization has no validated basis; bring the decision to the author; do not repurpose the analysis to pass",
+    "if_only_g_real_fails": "the mechanism holds under simulation but is NOT confirmed on real data; flag as a limitation (simulation-only mechanism), and E5 proceeds with that caveat explicit"
+  },
+  "branch_selected": "if_only_g_real_fails",
+  "build_only": true,
+  "raw_data_read": false,
+  "choices_read": false,
+  "reliability_recomputed": false,
+  "freeze_read": false,
+  "test_read": false,
+  "optimization_performed": false,
+  "candidate_designs_constructed": false
+}

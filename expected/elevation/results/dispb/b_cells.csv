@@ -1,0 +1,16 @@
+cell,value,source
+b1_icc_cov_hi,0.715378242116848,dispb_gate.json B1.G-B1a.per_estimand.covariance_subject_split.max_ICC_set
+b1_icc_cov_lo,0.626535138843483,dispb_gate.json B1.G-B1a.per_estimand.covariance_subject_split.min_ICC_set
+b1_n_partitions,200,dispb_gate.json B1.G-B1b.n_partitions
+b1_null_perm,0.0163537688014532,dispb_gate.json B1.G-B1c.permuted_sigma_set_true_cov_mean
+b1_sigma_cov_hi,0.246855143096524,dispb_gate.json B1.G-B1b.interval_90.hi
+b1_sigma_cov_lo,0.192159858948701,dispb_gate.json B1.G-B1b.interval_90.lo
+b1_sigma_set_true_cov,0.221417199785758,dispb_gate.json B1.G-B1b.mean_sigma_set_true_cov
+b2_decile_oos,0.153418372725935,dispb_gate.json B2.G-B2b.top_decile_out_of_sample_gain
+b2_decile_oos_hi,0.24763262582767,dispb_gate.json B2.G-B2b.interval_90.hi
+b2_decile_oos_lo,0.0452080382630031,dispb_gate.json B2.G-B2b.interval_90.lo
+b2_single_best_insample,0.2365718132905,dispb_gate.json B2.G-B2a.in_sample_single_best_gain
+b2_single_best_oos,0.0883207250216346,dispb_gate.json B2.G-B2a.out_sample_single_best_gain
+b3_corr_f2f4_k12_pearson,0.913790895492457,dispb_gate.json B3.feature_collinearity real_form1 loss_avoid_adj K12 pearson_F2_F4
+b3_corr_f2f4_k6_pearson,0.796985769859563,dispb_gate.json B3.feature_collinearity real_form1 loss_avoid_adj K6 pearson_F2_F4
+b3_delta_dropF4,0.0279409523135671,dispb_gate.json B3.G-B3b.max_abs_delta_gate_metric

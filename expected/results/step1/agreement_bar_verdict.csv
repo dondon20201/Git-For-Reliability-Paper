@@ -1,0 +1,4 @@
+agnostic,model_based,method,r,ci_lo,ci_hi,n_used,n_dropped,n_boot,expected_sign,sign_ok,magnitude_ok,pass,status
+ev_sens_agn,b_ev,spearman,0.7865897825181054,0.7448085159149306,0.8233094881686428,686,0,2000,1,TRUE,TRUE,TRUE,VERIFIED (pass)
+risk_agn,b_risk,spearman,0.40997506159102826,0.33084150734748435,0.48961125026275365,566,120,2000,1,TRUE,FALSE,FALSE,FAILED (flagged for review)
+loss_avoid_agn,b_loss,spearman,-0.11431142204026136,-0.20136037697827644,-0.029710210616786185,686,0,2000,-1,TRUE,FALSE,FALSE,FAILED (flagged for review)

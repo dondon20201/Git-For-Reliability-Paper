@@ -1,0 +1,14 @@
+cell,value,source
+c1_icc_raw,0.645755948411213,dispc_gate.json G-C1.primary_cell.ICC_raw
+c1_icc_resid,0.395429235971702,dispc_gate.json G-C1.primary_cell.ICC_resid
+c1_r2_loss_on_style,0.690027605523529,dispc_gate.json G-C1.r2_loss_on_style
+c1_rel_icc_drop,0.387649100337987,dispc_gate.json G-C1.primary_cell.relative_ICC_drop
+c1_sigma_raw,0.218613647634839,dispc_gate.json G-C1.primary_cell.sigma_true_raw
+c1_sigma_resid,0.22395229772019,dispc_gate.json G-C1.primary_cell.sigma_true_resid
+c2_dep_adj_icc_reduction,0.554779376686824,dispc_gate.json G-C2.dependence_adjusted_ICC_reduction
+c2_observed_r_sb_k12,0.480204031138934,dispc_gate.json G-C2.predicted_vs_observed[K=12].observed_r_sb
+c2_predicted_r_sb_k12,0.979372295193679,dispc_gate.json G-C2.predicted_vs_observed[K=12].predicted_r_sb
+c2_r1,0.937440140866699,dispc_gate.json G-C2.single_problem_reliability_r1
+c2_spearman_rsb_wpc,0.809079460450111,dispc_gate.json G-C2.spearman_rsb_wpc_k12
+c3_ranking_spearman_k12,0.99816803555459,dispc_gate.json G-C3.ranking_spearman_k12
+c3_ranking_spearman_k6,0.999740508738338,dispc_gate.json G-C3.per_K[K=6].ranking_spearman

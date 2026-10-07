@@ -1,0 +1,6 @@
+cell,value,source
+atten_max_observable_sb_k12,0.8024604985503655,sens/attenuation_bound.csv per_budget K=12 max_observable_sb_projected
+atten_max_observable_raw_k12,0.6891038353722164,sens/attenuation_bound.csv per_budget K=12 max_observable_spearman
+atten_rtrue_for_030_sb,0.3738501777245685,sens/attenuation_bound.csv required_r_true_K12 K=12 target_oof=0.3 rho_basis=sb_projected_full63 r_true_required
+real_anchor_k12,0.7463773814341489,sens/attenuation_bound.csv per_budget K=12 committed_real_oof_pooled (E4 real-anchor association at K12)
+real_anchor_ceiling_k12,0.6891038353722164,"sens/attenuation_bound.csv per_budget K=12 max_observable_spearman = sqrt(rho_o_out_of_subject), the association ceiling the outcome noise permits"

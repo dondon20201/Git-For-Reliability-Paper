@@ -1,0 +1,6 @@
+check,n,point_identical,samp_var_identical,point_max_abs_diff,samp_var_max_abs_diff
+"per_subject_estimates.csv point/samp_var, ev_sens_agn",686,TRUE,TRUE,0,0
+"per_subject_estimates.csv point/samp_var, loss_avoid_adj",686,TRUE,TRUE,0,0
+"per_subject_estimates.csv point/samp_var, b_ev",686,TRUE,TRUE,0,0
+"per_subject_estimates.csv point/samp_var, b_risk",686,TRUE,TRUE,0,0
+"per_subject_estimates.csv point/samp_var, b_loss",686,TRUE,TRUE,0,0

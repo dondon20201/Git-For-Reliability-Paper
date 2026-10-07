@@ -1,0 +1,114 @@
+{
+  "spec": "elevation/P2_spec.md",
+  "smoke_run": false,
+  "phase_reached": "1b_complete",
+  "exploratory": true,
+  "frozen_h2_fail_stands": true,
+  "build_only": true,
+  "n_build": 344,
+  "freeze_read": false,
+  "test_sealed": true,
+  "primary_target": "loss_avoid_adj",
+  "G0": {
+    "verdict": "PASS",
+    "G0a_convergence": {
+      "pass": true,
+      "mirt_converged": true,
+      "n_nonfinite_lambda": 0,
+      "n_nonfinite_se": 0
+    },
+    "G0b_degeneracy": {
+      "pass": true,
+      "degenerate_fraction": 0.07142857142857142,
+      "threshold": 0.1,
+      "n_items": 42,
+      "n_near_zero_var": 0,
+      "n_large_se": 3,
+      "n_large_lambda": 3,
+      "lambda_min": -0.2573494033277367,
+      "lambda_median": 1.219373610495863,
+      "lambda_max": 17.403658756729623
+    },
+    "G0c_conditioning": {
+      "pass": true,
+      "condition_number": 2.930053275405727,
+      "threshold": 30,
+      "feature_beta_ses_finite": true
+    },
+    "G0d_simulation": {
+      "pass": true,
+      "recovery_pass": true,
+      "recovery_beta_ci90": [0.2504699135435539, 0.3476417801021665],
+      "planted_beta": 0.3,
+      "recovery_corr_spearman": 0.9457904545822867,
+      "recovery_corr_threshold": 0.6,
+      "null_a_pass": true,
+      "null_a_beta_ci90": [-0.08366657843108911, 0.08548746448748519],
+      "null_b_pass": true,
+      "null_b_beta_ci90": [-0.03785082118748626, 0.03040541706148842],
+      "null_b_median_lambda": 0.03885757747756644,
+      "n_replicates": 200
+    }
+  },
+  "structural_findings": {
+    "gamma_not_identified": true,
+    "gamma_note": "d_ev_noloss is a problem-level constant, so the spec's gamma is exactly aliased with the free item easiness beta0_j; the model reduces to the one-factor item model with the EV control absorbed. E8-style common-intercept reference gamma reported separately.",
+    "gamma_reference_common_intercept": 0.165107793793717,
+    "forms_disjoint": true,
+    "n_forms": 7,
+    "loss_informative_items_per_form": [6, 9, 7, 4, 7, 2, 7],
+    "overdispersion_median": 8.538195204396205,
+    "overdispersion_note": "cell counts are overdispersed relative to Binomial(20); the one-factor binomial model has no uniqueness term, so subject-by-item variance can only be absorbed into lambda_j",
+    "code_added_permutation_null_median_lambda": 0.2523357935856547,
+    "code_added_permutation_null_rho_hat_top12": 0.996670752056025
+  },
+  "code_side_definitions": {
+    "note": "F1, F2 and F3 have no exact one-item decomposition of E4's set-level formulas; the per-item analogues are Code-side definitions carried to planning review as an open item. F4 and F5 decompose exactly.",
+    "F1": "squared deviation of the target predictor from its pool mean",
+    "F2": "eloss_a + eloss_b (E4's mean_eloss input); E4's loss-informative COUNT is constant 1 on the primary item universe",
+    "F3": "max over predictor pairs of |zc_p * zc_q| on pool-centered z",
+    "baseline": "item-level baseline is broad category only (domain + near_parity + dominance); E4's problem count has no item-level analogue"
+  },
+  "G1": {
+    "pass": true,
+    "cv_spearman": 0.8545498744023985,
+    "threshold": 0.3,
+    "cv_delta_vs_baseline": 0.7263951621935036
+  },
+  "G2": {
+    "cv_spearman_real": -0.2974637387569889,
+    "sign_agrees_with_G1": false,
+    "gating": false
+  },
+  "G3": {
+    "pass": true,
+    "threshold": 0.3,
+    "per_K": [
+      {
+        "K": 8,
+        "spearman_rho_hat_vs_e3b": 0.6122593451536362,
+        "ci_lo": 0.5706107941233005,
+        "ci_hi": 0.6496337031521464
+      },
+      {
+        "K": 10,
+        "spearman_rho_hat_vs_e3b": 0.6480589409233387,
+        "ci_lo": 0.6158157271698247,
+        "ci_hi": 0.6793598996913912
+      },
+      {
+        "K": 12,
+        "spearman_rho_hat_vs_e3b": 0.6892479929075102,
+        "ci_lo": 0.6612410323109965,
+        "ci_hi": 0.7146699411658258
+      }
+    ]
+  },
+  "honesty_guards": {
+    "HG1a_ok": true,
+    "HG1b_leakage_flag": true,
+    "HG2_ok": true,
+    "HG3_leakage_flag": true,
+    "HG4_ok": true
+  }
+}
