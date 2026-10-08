@@ -125,9 +125,6 @@ the empirical ceiling estimates from step 18. The paper's other two figures
 plot values produced by steps 08, 13, 18 and 19; their plotting scripts are
 not included.
 
-The development repository, including the records of analysis specification,
-is [paper1](https://github.com/dondon20201/paper1).
-
 ## License
 
 MIT (see `LICENSE`).
