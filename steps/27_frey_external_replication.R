@@ -7,11 +7,11 @@
 
 # P3 external replication on the Frey et al. (2017) Basel-Berlin Risk Study.
 #
-# Uses ONLY the public Frey data (OSF rce7g); no CPC18 data, no CPC18 participant
+# Uses only the public Frey data (OSF rce7g); no CPC18 data, no CPC18 participant
 # split and no CPC18-derived result is read. The analysis plan was fixed before this
 # script ran. All reliability statistics are rank-based (Spearman). Split-half uses the frozen
 # Spearman-Brown form 2r/(1+r). Test-retest (temporal, 6-month) and split-half (internal)
-# are NEVER conflated: every output column carries a retest_ or splithalf_ prefix.
+# are distinguished: every output column carries a retest_ or splithalf_ prefix.
 
 suppressPackageStartupMessages({
   library(dplyr)

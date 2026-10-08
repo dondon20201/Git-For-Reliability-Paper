@@ -20,12 +20,11 @@ save_result <- function(df, name) {
   df
 }
 
-# Seeds. true_params reuses the step 01 seed (181002) with the same draw code,
-# so the true parameter vectors are EXACTLY the step 01 draws. Donor sampling
-# and choice noise are fresh draws (the step 01 RNG stream cannot be replayed
-# mid-sequence for a 3-cell subset); estimator comparisons below are therefore
-# PAIRED WITHIN THIS RUN — both estimators fit identical simulated datasets —
-# which is the comparison that matters.
+# true_params reuses the step 01 seed (181002) and draw code, giving the same
+# true parameter vectors. Donor sampling and choice noise use fresh draws:
+# the step 01 RNG stream cannot be replayed mid-sequence for this three-cell
+# subset. Both estimators fit identical simulated datasets within this run,
+# so their comparison is paired.
 seeds <- list(true_params = 181002, recovery = 182001,
               loss_sweep = 182002, bootstrap = 182003)
 jsonlite::write_json(seeds, file.path(res_dir, "seeds.json"), auto_unbox = TRUE)

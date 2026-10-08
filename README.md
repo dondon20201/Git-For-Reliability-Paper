@@ -3,9 +3,9 @@
 Replication code for the paper "How Many Problems Are Enough, and Which? A
 Reliability Ceiling for Individual-Difference Measures of Risky Choice".
 
-Each step of the analysis is one plain R script in `steps/`, run in numeric
-order. Running them all reproduces every result file that the paper's numbers
-come from, and `check.R` compares those files with the copies in `expected/`.
+The numbered R scripts in `steps/` run in order and write results to `output/`.
+`check.R` compares the selected result files stored in `expected/` with the
+corresponding outputs.
 
 ## What you need
 
@@ -37,10 +37,10 @@ then, in a terminal:
 Rscript run_all.R
 ```
 
-`run_all.R` runs the steps in order, each in a fresh R process, stops at the
-first step that fails, and then runs `check.R`. Each step's console output is
-written to `output/logs/`. A range of steps can be run on its own, for example
-`Rscript run_all.R 1 23` and later `Rscript run_all.R 24 39`.
+`run_all.R` runs each step in a fresh R process and stops at the first failure.
+It writes console output to `output/logs/` and runs `check.R` when the selected
+range ends at step 39. To split a run, use `Rscript run_all.R 1 23` followed by
+`Rscript run_all.R 24 39`.
 
 On Windows without Rtools, `renv::restore()` may fail to build `xfun` 0.59 from
 source. In that case run `renv::install("xfun")` and then `renv::restore()`
@@ -60,12 +60,14 @@ steps take a few seconds to a few minutes. Each step's header gives its runtime.
 Rscript check.R
 ```
 
-compares every file in `expected/` with the file of the same name in
-`output/`. Every number must agree within 1e-10 times its size (at least
-1e-10), missing values must stay missing, and TRUE/FALSE flags must match;
-other text is ignored. It prints one line per file and exits with an error if
-any file differs. The files in `expected/` are the result files of the original
-analysis.
+compares the CSV and JSON files in `expected/` with the files of the same name
+in `output/`. Numeric values must agree within `1e-10 * max(1, abs(expected))`;
+infinite values and NaN must match exactly. Numeric values cannot become
+missing, missing values cannot become numeric, and TRUE/FALSE flags must
+match. CSV column names and row counts must also match. Other text and image
+files are not checked. The script prints one line per file and exits with an
+error if a checked value differs or an output file is missing. `expected/`
+contains the reference files from the original analysis.
 
 Paths written inside output files and log messages (for example
 `results/step2/reliability_by_cell_construct.csv`) are relative to `output/`.
@@ -116,12 +118,12 @@ Paths written inside output files and log messages (for example
 
 "Ceiling section" is the results section "The reliability ceiling reflects
 true-score variance, not estimation". Each script starts with a short header
-listing what it reads and writes. Steps marked "simulation" use simulated data
-only. The paper's other two figures plot values produced by steps 08, 13, 18
-and 19; their plotting scripts are not included.
-
-The full development history, including when each analysis was specified, is at
-github.com/dondon20201/paper1.
+listing what it reads and writes. Recovery and calibration results are labeled
+as simulations; those scripts also read the empirical problem features used
+to define the simulated designs. Step 19 combines the recovery verdicts with
+the empirical ceiling estimates from step 18. The paper's other two figures
+plot values produced by steps 08, 13, 18 and 19; their plotting scripts are
+not included.
 
 ## License
 

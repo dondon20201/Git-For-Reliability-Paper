@@ -4,22 +4,18 @@
 # Paper:   Methods (Problem-information dictionary)
 # Runtime: a few seconds
 
-# E2: item-level problem-information dictionary.
+# E2: deterministic item-level problem-information dictionary.
+# Each field is a closed-form function of the raw data restricted to build
+# subjects. There is no random sampling or bootstrap, and no reliability,
+# recovery, prediction, optimization, or mechanism model is fitted.
 #
-# DESCRIPTIVE ONLY. NO reliability, NO recovery, NO prediction, NO optimization,
-# NO mechanism model. FULLY DETERMINISTIC: no RNG, no
-# bootstrap, no seed - every field is a closed-form function of the raw data
-# restricted to build subjects, so any re-derivation is exact rather than an
-# expectation-level check.
+# Choice-dependent fields use the 344 build subjects from step 20. The 137
+# freeze and 205 test subjects' choices are excluded; test choices remain
+# reserved for E7. Choice/outcome columns are dropped from the full-sample
+# frame at load, so only build_trials contains choices.
 #
-# BUILD-ONLY. Choice-dependent fields use the 344 BUILD subjects of the
-# E1 split (step 20). The 137 freeze and 205 test subjects' choices are NEVER
-# read; the 205 test subjects stay sealed until E7. The guarantee
-# is structural, not just asserted: the full-sample frame has every choice /
-# outcome column DROPPED at load, so only `build_trials` can carry a choice.
-#
-# Reuses the loaders in R/cpc18_features.R so structure and predictor fields
-# are identical to the earlier steps.
+# The loaders in R/cpc18_features.R keep the structure and predictor fields
+# consistent with earlier steps.
 
 suppressPackageStartupMessages({
   library(tidyverse)

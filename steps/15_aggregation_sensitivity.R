@@ -4,21 +4,19 @@
 # Paper:   Supplement (Aggregation-estimator sensitivity)
 # Runtime: about 24 minutes with 12 parallel workers
 
-# Split-half AGGREGATION-estimator sensitivity.
+# Compare aggregation rules for the same split-half correlations.
+# Steps 05 and 11 use the arithmetic mean of up to 200 per-split Spearman
+# correlations, dropping and counting splits with fewer than 10 complete
+# pairs, then apply Spearman-Brown (R/step2_reliability.R::reliability_point).
 #
-# REAL DATA. The reliability pipeline (steps 05 and 11) aggregates the
-# up-to-200 per-split Spearman correlations by their ARITHMETIC MEAN (splits
-# with fewer than 10 complete pairs dropped and counted), then applies
-# Spearman-Brown (R/step2_reliability.R::reliability_point). This script
-# re-runs the SAME engine (run_cell / split_correlations / sb_correct — no
-# re-implementation) with the SAME saved seeds for every reported curve cell
-# on both pools, reproduces the saved point estimates exactly (assertion,
-# < 1e-9), and reports median and Fisher-z aggregation of the same per-split
-# correlations as a sensitivity analysis, plus a crossing-invariance check
-# against the step 14 trials-needed table.
+# Rerun run_cell / split_correlations / sb_correct with the saved seeds for
+# every reported cell in both pools. Assert that the original point estimates
+# are reproduced within 1e-9, then compare median and Fisher-z aggregation
+# of those same correlations. Check whether these alternatives change the
+# threshold crossings in the step 14 trials-needed table.
 #
-# Only the three aggregation_* CSVs are written; the earlier reliability
-# tables, trials-needed tables and all figures are untouched.
+# Only the three aggregation_* CSVs are written; earlier tables and figures
+# are retained.
 
 library(tidyverse)
 library(here)

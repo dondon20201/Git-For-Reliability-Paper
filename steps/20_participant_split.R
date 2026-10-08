@@ -4,17 +4,15 @@
 # Paper:   Methods (Participant split and held-out groups); Study 2; Limitations
 # Runtime: a few seconds
 
-# E1 Part B: seeded cohort-respecting three-way participant split + fixed
-# baseline grid.
+# E1 Part B: three-way participant split and fixed baseline grid.
+# This pre-specification step reads only the participant-to-Set incidence table
+# from step 17 (SubjID, Set), not trial choices. It performs no optimization,
+# mechanism modeling, recovery, or prediction.
 #
-# PRE-SPECIFICATION gate. NO optimization, NO mechanism model, NO recovery,
-# NO prediction, NO reading of any test participant's trial choices. The ONLY
-# data read is the participant->Set incidence CSV from step 17 (SubjID, Set).
-#
-# Within EACH form (Set 1-7) participants are randomly assigned
-# build / freeze / test in target proportions 0.50 / 0.20 / 0.30, using
-# largest-remainder rounding so per-Set counts are integer and every Set
-# contributes to every split. Pre-declared seed 20260718.
+# Within each form (Set 1-7), assign participants to build / freeze / test
+# in target proportions 0.50 / 0.20 / 0.30. Largest-remainder rounding gives
+# integer counts and representation of every form in each group.
+# Pre-declared seed: 20260718.
 
 suppressPackageStartupMessages({
   library(tidyverse)

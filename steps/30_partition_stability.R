@@ -4,36 +4,24 @@
 # Paper:   Study 2 (Ruling out alternatives); Supplement (Study 2 robustness detail), through steps 33 and 36
 # Runtime: about 2 hours with 12 parallel workers
 
-# Probe B1: heterogeneity stability, with pre-declared gates G-B1a..d.
+# B1: test the stability of H1 with pre-declared gates G-B1a..d.
+# The original E3 result used one gate cell, one Monte-Carlo set sample, and
+# one noise-floor estimand. This check uses R_SEED independent set samples,
+# two noise estimands, random subject partitions, and a null-permutation control.
+# It re-scores the existing subsets without optimizing designs or fitting a
+# new choice model. The original H1 PASS is retained, and any failed robustness
+# gate is reported.
 #
-# QUESTION. E3 established H1 (same-count heterogeneity is real) at ONE cell
-# with ONE Monte-Carlo set sample, ONE noise-floor estimand and ONE set of
-# analyst choices. B1 asks whether that verdict survives when each of those
-# single choices is replaced by a battery: R_SEED independent set samples, TWO
-# pre-declared noise estimands, and many random subject partitions, plus a
-# null-permutation control.
+# Reliabilities use the 344 build subjects from step 20; Set-1 cells use its
+# 63 build subjects. Choice/outcome columns are dropped from the full-sample
+# frame at load, excluding the 137 freeze and 205 test subjects' choices.
 #
-# WHAT THIS IS NOT. NO optimization, NO candidate-design construction, NO new
-# choice-model fit, NO freeze or test read. The frozen E3 h1_gate.json is
-# neither re-run nor amended; nothing here can overwrite the frozen H1 PASS. A
-# pre-declared-gate FAIL is a valid result and is reported as-is.
-#
-# BUILD-ONLY. Every reliability is recomputed from the 344 BUILD subjects of
-# the frozen E1 split, and the Set-1 cells use its 63 Set-1 build subjects. The
-# 137 FREEZE subjects are NOT read; the 205 TEST subjects stay SEALED. The
-# guarantee is structural: the full-sample frame has every choice / outcome
-# column DROPPED at load, so no freeze or test choice can reach any
-# computation.
-#
-# ENGINE PROVENANCE. The frozen engines are SOURCED unchanged; none is
-# redefined (asserted at source level by 33_partition_checks_verify.R). Every
-# reported reliability passes through the frozen split_correlations /
-# sb_correct, and every noise floor through the frozen reliability_point. The
-# two targets are evaluated by the SAME vectorised accelerator used and
-# documented in steps 22 and 24; gate G_EQ in 33_partition_checks_verify.R
-# re-proves it reproduces the frozen estimate_half to < 1e-12 with identical
-# NA patterns BEFORE any result exists, and a whole-set spot check closes the
-# loop on r_sb itself.
+# The shared functions are sourced without redefinition, checked by
+# 33_partition_checks_verify.R. Scoring uses split_correlations and sb_correct;
+# noise floors use reliability_point. The two target indices use the
+# accelerator documented in steps 22 and 24. Step 33's G_EQ checks it against
+# estimate_half to < 1e-12 with identical NA patterns, and a whole-set spot
+# check verifies r_sb through the original engine.
 
 suppressPackageStartupMessages({
   library(tidyverse)

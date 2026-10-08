@@ -4,41 +4,27 @@
 # Paper:   Study 2 (Ruling out alternatives); Supplement (Study 2 robustness detail), through step 36
 # Runtime: about 25 minutes with 14 parallel workers
 
-# Study 2 defensive diagnostics C1 / C2 / C3 (gates G-C1 / G-C2 / G-C3).
-#
-# QUESTION. E3 (step 22) established H1 (same-count set heterogeneity is real)
-# for the loss construct on Set 1. This step runs three PRE-DECLARED
-# diagnostics that rule out (or confirm) alternative explanations for that
-# heterogeneity:
+# C1 / C2 / C3: pre-declared checks of alternative explanations for E3's
+# Set-1 loss-construct heterogeneity (gates G-C1 / G-C2 / G-C3):
 #   C1 response-style contamination (B-side bias / safe-choice tendency),
 #   C2 local item dependence (within-set problem-residual coherence),
 #   C3 scoring-rule specificity (a robust median loss score).
-# Each is interpretable whichever way it lands: a confound present NARROWS H1,
-# a confound absent STRENGTHENS the construct reading. INCONCLUSIVE (C2) is a
-# valid pre-declared outcome.
+# A detected confound narrows the H1 claim; absence of a confound strengthens
+# the construct interpretation. C2 may also be INCONCLUSIVE. The frozen
+# H1 PASS and H2 FAIL remain unchanged. Weak or inconclusive findings are
+# reported rather than used to select further models.
 #
-# WHAT THIS IS NOT. NO optimization, NO candidate-design construction, NO new
-# mechanism-model fit, NO freeze or test read. The frozen E3 h1_gate.json and
-# E4 h2_gate.json are neither re-run nor amended; nothing here can overwrite the
-# frozen H1 PASS or H2 FAIL. A weak or inconclusive result NARROWS the claim
-# rather than spawning more models.
+# Reliabilities use the 63 Set-1 build subjects from step 20. Choice/outcome
+# columns are dropped from the full-sample frame, excluding the 137 freeze and
+# 205 test subjects' choices. No candidate designs are optimized or constructed,
+# and no new mechanism model is fitted.
 #
-# BUILD-ONLY. Every reliability is recomputed from the 63 Set-1 BUILD subjects
-# of the frozen E1 split. The 137 FREEZE subjects are NOT read; the 205 TEST
-# subjects stay SEALED. The guarantee is structural: the full-sample frame has
-# every choice / outcome column DROPPED at load, so no freeze or test choice can
-# reach any computation.
-#
-# ENGINE PROVENANCE. R/step2_reliability.R and R/cpc18_features.R are SOURCED
-# unchanged; none is redefined (asserted at source level by
-# 35_local_dependence_verify.R). The two targets are evaluated by the SAME
-# vectorised accelerator used in E3, E3b and the partition checks (steps
-# 30-33); an inline G_EQ re-proves the from-raw loss score reproduces the
-# frozen estimate_half bit-for-bit BEFORE any result, and
-# 35_local_dependence_verify.R closes the loop on whole-set r_sb through the
-# frozen engine.
-# The MEDIAN loss score (C3) is a NEW pre-declared robust variant with no frozen
-# counterpart; it is not claimed to equal the frozen mean score.
+# R/step2_reliability.R and R/cpc18_features.R are sourced without redefinition,
+# checked at source level by step 35. The two target indices use the accelerator
+# from E3, E3b, and steps 30-33. Before results are produced, the inline G_EQ
+# checks exact agreement of the from-raw loss score with estimate_half; step 35
+# also checks whole-set r_sb through the original engine. C3's median loss
+# score is a new pre-declared variant, not an equivalent of the frozen mean.
 
 suppressPackageStartupMessages({
   library(tidyverse)

@@ -1,5 +1,5 @@
 # Rank-based split-half reliability versus trial budget (used from step 05 on).
-# REAL DATA ONLY. Design constants (N_SPLITS = 200, N_BOOT = 2000, budget
+# Design constants (N_SPLITS = 200, N_BOOT = 2000, budget
 # grids) are pre-declared and fixed.
 #
 # Scheme:

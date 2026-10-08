@@ -5,14 +5,12 @@
 # Paper:   Methods (Participant split and held-out groups), through step 20
 # Runtime: a few seconds
 
-# E0 Part A: CPC18 problem-assignment and overlap audit, on the md5-verified
-# CPC18 estimation raw data.
+# E0 Part A: describe participant assignment and overlap in the md5-verified
+# CPC18 estimation data. The audit assesses whether the observed forms can
+# support a fixed short form, feature-based selection, or a simulation-backed
+# design; it does not optimize a design.
 #
-# Purpose (diagnostic, NOT optimization): describe how CPC18 assigned
-# problems to participants, to decide whether a fixed short form, a
-# feature-based selection rule, or a simulation-backed design is feasible.
-#
-# Reuses the loaders in R/cpc18_features.R: load_cpc18, is_clean_row.
+# Reuses load_cpc18 and is_clean_row from R/cpc18_features.R.
 
 suppressPackageStartupMessages({
   library(tidyverse)

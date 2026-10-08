@@ -4,18 +4,17 @@
 # Paper:   Methods (Constructs)
 # Runtime: a few seconds
 
-# Rank correlation between the two model-agnostic indices across participants
-# (AUDIT ONLY - adds one results file, changes no method or threshold).
+# Compute the association between loss_avoid_adj and ev_sens_agn across
+# participants with both full-data point estimates. Input is the step 18
+# E0 table for the experience regime (r = 20, clean pool).
 #
-# Reads exactly one file, the E0 full-data per-participant point estimates
-# from step 18 (experience regime, r = 20, clean pool), and
-# correlates loss_avoid_adj with ev_sens_agn across the participants who have
-# both points. Reported: Spearman (primary, rank-based) and Pearson
-# (secondary), n, and a 95% percentile interval for each from a
-# participant bootstrap.
+# Report Spearman correlation as the primary statistic and Pearson as a
+# secondary statistic, with n and a 95% percentile participant-bootstrap
+# interval for each. This adds one results file and changes no method or
+# threshold in earlier steps.
 #
-# Seed: 20261005 (bootstrap only; recorded in the output). Nothing else is
-# stochastic.
+# Bootstrap seed: 20261005, recorded in the output. There is no other
+# random sampling.
 
 suppressPackageStartupMessages({
   library(here)

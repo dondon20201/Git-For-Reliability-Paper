@@ -5,25 +5,23 @@
 # Paper:   Methods (Problem pools; Validation gates); Results (Reliability differs across problem pools)
 # Runtime: a few seconds
 
-# Expanded problem pool (all Amb == 0, LotNum unrestricted) and the RECOVERY
-# RE-GATE on the expanded design.
+# Define the expanded pool (Amb == 0, with LotNum unrestricted) and repeat
+# the parameter-recovery check on that design. The step 09 validation gate
+# must pass before this step runs; its saved verdict is checked below.
 #
-# Runs ONLY after the step 09 validation gate passed (asserted below by
-# re-checking output/results/step4/reconstruction_validation.csv).
+# For each k, subjects need >= 2k expanded problems, following step 05.
+# Corr != 0 problems are retained: outcome correlation affects joint payoff
+# draws, not the marginal distributions or EVs used here. The realized grid
+# uses the experience regime, r = 20, and k from 2 to the largest value with
+# n_subjects >= 100.
 #
-# Expanded pool: eligibility table per k (step 05 convention: a subject is
-#     eligible at k if they have >= 2k expanded problems), Corr != 0 problem
-#     count (kept; outcome correlation affects joint payoff draws, never the
-#     marginal distributions or EVs used here), realized experience-regime grid
-#     (r = 20; k from 2 up to the largest k with n_subjects >= 100).
-# Recovery re-gate: SIMULATION (labeled as such everywhere): 500 simulated
-#     subjects with known planted parameters on REAL donor subjects' FULL
-#     expanded problem sets (step 01 machinery), 25 reps/problem, refit with
-#     the step 04 Firth estimator on features computed from the validated
-#     reconstruction.
-#     PRE-DECLARED BAR: Spearman(true, recovered) >= .7 per parameter at the
-#     full expanded budget. Parameters that fail keep their extended curves
-#     but are labeled "recovery-failed on expanded design — not interpreted".
+# The recovery check is labeled SIMULATION: 500 subjects with known planted
+# parameters use real donor subjects' full expanded problem sets and 25
+# repetitions per problem (step 01 machinery). The step 04 Firth estimator
+# refits them using features from the validated reconstruction.
+# The pre-declared criterion is Spearman(true, recovered) >= .7 for each
+# parameter at the full expanded budget. Failed parameters retain their
+# extended curves, labeled as recovery failures and excluded from interpretation.
 
 library(tidyverse)
 library(here)

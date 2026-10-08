@@ -4,25 +4,22 @@
 # Paper:   Supplement (Fixed-cohort robustness)
 # Runtime: about 22 minutes with 12 parallel workers
 
-# Fixed-cohort robustness of the reliability versus problem-count curves.
+# Hold the participant cohort fixed along each problem-count axis.
+# In steps 05 and 11, run_cell keeps subjects with >= 2k problems, so the
+# eligible cohort shrinks as k increases. The count effect can therefore
+# partly reflect which participants are measured.
 #
-# REAL DATA. The original curves (steps 05 and 11) let the SUBJECT set shrink
-# as k grows (run_cell keeps subjects with >= 2k problems), so the count
-# effect could partly reflect who is measured rather than budget. This script
-# re-runs the SAME engine (run_cell / reliability_point — no
-# re-implementation) with the SAME saved cell and bootstrap seeds on a
-# CONSTANT participant cohort per axis: subjects eligible at the largest
-# budget of that axis, held fixed at every k. Generalizes step 07 (whose
-# fixed_pool_check.csv is untouched) to all five constructs, both pools, and
-# the description regime.
+# Rerun run_cell / reliability_point with the saved cell and bootstrap seeds,
+# using subjects eligible at the largest budget on each axis for every k.
+# This extends step 07 to all five constructs, both pools, and the description
+# regime while retaining its fixed_pool_check.csv.
 #
-# Reproduction anchor (pre-declared): at each axis's k_max the fixed cohort
-# EQUALS the original eligible set, so with the saved seeds the fixed-cohort
-# r_sb must equal the original r_sb to < 1e-9 for every construct. In-script
-# stopifnot; halt on any miss.
+# At each axis's k_max, the fixed cohort equals the original eligible set.
+# The pre-declared reproduction check requires r_sb to match the original
+# within 1e-9 for every construct and stops on any failure.
 #
-# Only the two fixed_cohort_* CSVs are written; the earlier reliability
-# tables, trials-needed tables, step 07 outputs and all figures are untouched.
+# Only the two fixed_cohort_* CSVs are written; earlier tables, step 07 outputs
+# and figures are retained.
 
 library(tidyverse)
 library(here)

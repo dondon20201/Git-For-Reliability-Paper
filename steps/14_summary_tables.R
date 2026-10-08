@@ -4,25 +4,20 @@
 # Paper:   Results (trials-needed values and thresholds); Appendix and Supplement (claim-status tables)
 # Runtime: a few seconds
 
-# Combined trials-needed table (construct x pool x regime, thresholds
-# .5/.7/.8) and claim-status skeleton (one row per key quantitative claim).
+# Combine trials-needed values by construct, pool, regime and threshold
+# (.5/.7/.8), and assemble one row per quantitative claim.
 #
-# ZERO estimation: every value is READ from a saved results CSV (the
-# prior-study facts from output/results/step3/prior_studies_table.csv, the
-# byte-identical copy of data/prior_studies.csv made in step 08) — none typed
-# by hand. The only operations
-# are filtering, first-k-at-threshold lookup on already-saved reliability
-# values (the same deterministic rule that built the step 05 table, cross-
-# asserted against the pre-declared answers in
-# output/results/step4/extended_interpretation.csv), and arithmetic unit
-# conversion (total problems = 2 * k; total trials = total problems * r).
-# Deterministic — no RNG.
+# Values come from saved result CSVs. Prior-study values use the byte-identical
+# copy of data/prior_studies.csv written by step 08. Operations are limited
+# to filtering, finding the first saved k at each reliability threshold, and
+# converting units (total problems = 2 * k; total trials = total problems * r).
+# The threshold rule matches step 05 and is checked against the pre-declared
+# answers in output/results/step4/extended_interpretation.csv. There is no
+# random sampling or new estimation.
 #
-# The hand-authored interpretation prose lives in the input
-# data/claim_prose.csv (claim_id, prose) and is joined by claim_id, so the
-# skeleton is regenerable from code. The run fails if any claim lacks prose
-# or any prose row names no claim. Prose carries no quantitative values;
-# every claim_value is still pulled from its source CSV.
+# Interpretation text from data/claim_prose.csv is joined by claim_id. The run
+# fails if a claim lacks prose or a prose row names no claim. That text contains
+# no quantitative values; each claim_value comes from its source CSV.
 
 suppressPackageStartupMessages({
   library(dplyr)
@@ -62,7 +57,7 @@ combined_clean <- needed |>
   )
 
 # Expanded pool: assembled from output/results/step4/reliability_extended.csv
-# using the same rule that built the step 05 table — the first realized k whose
+# using the same rule that built the step 05 table: the first realized k whose
 # saved r_sb value meets the threshold; never extrapolate beyond the
 # realized grid (k <= 13).
 constructs <- c("b_ev", "b_loss", "b_risk", "ev_sens_agn", "loss_avoid_adj")
@@ -160,11 +155,11 @@ n_reached_ext <- sum(reread$entry == "reached" &
 # ============================================================================
 # Claim-status skeleton (prose joined from data/claim_prose.csv)
 # ============================================================================
-# Every claim_value is pulled programmatically from its source CSV — the
+# Every claim_value is pulled programmatically from its source CSV; the
 # claim() helper takes the already-loaded data frame cell, so a hand-typed
 # value cannot enter. Statuses: VERIFIED (computed here from md5-verified real
 # data), REPRODUCED (matched a named external source), SIMULATION
-# (from simulated data — recovery gates), EXPLORATORY (labeled exploratory).
+# (from simulated data; recovery gates), EXPLORATORY (labeled exploratory).
 
 s0_rec  <- read_chr("results", "step0", "recovery_verdict.csv")
 s0_rate <- read_chr("results", "step0", "sanity_b_rate.csv")
@@ -262,7 +257,7 @@ claims$s2_desc_total <- claim(
   "results/step2/trials_needed_table.csv",
   "axis=i_desc; construct=loss_avoid_adj; threshold=0.5; col total_problems",
   "VERIFIED")
-# k=5 artifact: on the FIXED problem pool the curves are monotone in k —
+# k=5 artifact: on the fixed problem pool the curves are monotone in k;
 # computed (not typed) from the step 07 fixed-pool CSV.
 mono <- function(co) {
   v <- s2_fix |> filter(construct == co) |>

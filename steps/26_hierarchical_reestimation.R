@@ -4,45 +4,33 @@
 # Paper:   The reliability ceiling reflects true-score variance (Better estimation does not lower the ceiling); Abstract
 # Runtime: about 10 minutes with 12 parallel workers
 
-# E8: hierarchical (partial-pooling) re-estimation vs the frozen per-subject
-# estimator.
+# E8: compare hierarchical partial pooling with the frozen per-subject
+# estimator on identical split draws. The primary target is loss_avoid_adj;
+# ev_sens_agn is secondary. A near-zero change in reliability is a pre-declared
+# outcome relevant to the true-variance ceiling interpretation.
 #
-# QUESTION: does multilevel partial pooling raise the held-out split-half
-# reliability of loss_avoid_adj (PRIMARY) and ev_sens_agn (SECONDARY) relative
-# to the frozen per-subject estimator, on IDENTICAL split draws? A Delta ~ 0
-# everywhere is an equally valid, pre-declared outcome (the wall is a
-# true-variance ceiling, not an estimation artifact); the analysis is never
-# repurposed to pass.
+# All estimates use the 344 build subjects from step 20. Choice/outcome columns
+# are dropped from the full-sample frame, excluding the 137 freeze and 205 test
+# subjects' choices. This step does not optimize candidate designs, fit a
+# mechanism model, or read freeze/test outcomes.
 #
-# BUILD-ONLY. Every quantity uses the 344 BUILD subjects of the frozen
-# participant split (step 20). The 137 FREEZE subjects are not read; the 205
-# TEST subjects stay sealed. Structural guarantee: the full-sample frame has every
-# choice/outcome column DROPPED at load, so only the build-restricted frame
-# can carry a choice. NO optimization, NO candidate designs, NO mechanism
-# model, NO freeze/test read.
-#
-# ENGINE PROVENANCE. Frozen engines are SOURCED
-# unchanged and none is redefined:
+# The shared functions are sourced without redefinition:
 #   R/step2_reliability.R  build_subject_data, fit_loss_baselines,
 #                          estimate_half, split_correlations, sb_correct,
-#                          reliability_point (run_cell's lambda = NA
-#                          eligibility and partition scheme are mirrored
-#                          draw-for-draw; estimate_half IS the raw arm)
-#   R/step1_measures.R     (sourced for provenance; index definitions)
+#                          reliability_point
+#   R/step1_measures.R     index definitions, sourced for provenance
 #   R/cpc18_features.R     load_cpc18, is_clean_row, clean_problem_features,
 #                          add_scaled_features
-# The RAW arm calls the frozen estimate_half DIRECTLY (no accelerator, no
-# re-implementation); gate G_EQ re-derives a committed sample of halves
-# through estimate_half again and asserts BIT-IDENTICAL agreement before any
-# reliability is computed. Every reported reliability in BOTH arms flows
-# through the frozen split_correlations + sb_correct (+ reliability_point for
-# per-arm CIs); the hier arm changes ONLY the per-half per-subject input
-# vector.
+# Eligibility and partitions mirror run_cell's lambda = NA path draw for draw.
+# The raw arm calls estimate_half directly, without an accelerator. G_EQ
+# reproduces a committed sample of halves exactly before reliability is
+# computed. Both arms use split_correlations, sb_correct, and reliability_point
+# for scoring and intervals; the hierarchical arm changes only the per-half,
+# per-subject input vector.
 #
-# SMOKE MODE: E8_SMOKE=1 shrinks loop
-# counts and redirects ALL outputs to a scratch directory to exercise the
-# mechanics before the full run. It never writes under output/elevation/ and
-# its numbers are never results. The full-run constants below are unaffected.
+# E8_SMOKE=1 reduces loop counts and writes to a scratch directory rather than
+# output/elevation/. Smoke-run numbers are not research results, and the
+# full-run constants are unchanged.
 
 suppressPackageStartupMessages({
   library(tidyverse)
