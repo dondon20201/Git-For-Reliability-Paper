@@ -480,7 +480,6 @@ if (file.exists(part_path)) {
     status = paste("newly pre-declared robustness re-analysis of the frozen",
                    "Study 2 result; NOT part of the frozen E1 confirmatory arc"),
     frozen_results_untouched = list(
-      study1_tag = "paper1-final-2026-07-17",
       e3_h1_verdict = "PASS (unchanged; h1_gate.json neither re-run nor amended)",
       e4_h2_verdict = "FAIL (unchanged; h2_gate.json neither re-run nor amended)"),
     d1_engine_provenance = list(g_eq = verify$g_eq, spot_check = verify$spot_check,

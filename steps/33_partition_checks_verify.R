@@ -476,7 +476,6 @@ if (all(have)) {
     status = paste("newly pre-declared robustness re-analysis of the frozen",
                    "Study 2 result; NOT part of the frozen E1 confirmatory arc"),
     frozen_results_untouched = list(
-      study1_tag = "paper1-final-2026-07-17",
       e3_h1_verdict = "PASS (unchanged; h1_gate.json neither re-run nor amended)",
       e4_h2_verdict = "FAIL (unchanged; h2_gate.json neither re-run nor amended)"),
     d1_engine_provenance = verify$g_eq,
