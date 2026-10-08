@@ -44,7 +44,7 @@ curve_chr <- cells_chr |>
 
 # Observed grid: k = 2..7. Headline constructs identified everywhere;
 # model parameters structurally unidentified below k = 4 (k < 4 problems/half
-# for a 4-parameter fit) — those rows are NA and are NOT plotted.
+# for a 4-parameter fit); those rows are NA and are not plotted.
 stopifnot(identical(sort(unique(as.integer(curve_chr$k))), 2:7))
 plotted_chr <- curve_chr |> filter(status == "VERIFIED")
 counts <- plotted_chr |> count(construct)
@@ -65,7 +65,7 @@ plotted <- plotted_chr |>
     hi_num         = as.numeric(ci_hi_sb),
     layer          = if_else(construct %in% constructs_headline, "headline", "cautionary_grey")
   )
-max(plotted$total_problems)  # must be 14 — no curve segment beyond this
+max(plotted$total_problems)  # must be 14; no curve segment beyond this
 stopifnot(max(plotted$total_problems) == 14L)
 
 fig_studies <- studies |> filter(in_figure == "yes")

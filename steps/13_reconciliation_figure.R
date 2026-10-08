@@ -4,18 +4,16 @@
 # Paper:   Results, Figure 1; the grid maxima quoted in the text
 # Runtime: a few seconds
 
-# Reconciliation figure v2: BOTH pools.
+# Assemble Figure 1 for the clean and expanded pools without re-estimating
+# reliability. Curve values are read verbatim from the saved CSVs from steps
+# 05 and 11; prior-study values come from data/prior_studies.csv. Numeric
+# operations are limited to total problems = 2 * k for x-axis coordinates
+# and rounding for labels. There is no random sampling.
 #
-# ZERO estimation: every curve value is READ, string-verbatim, from the two
-# saved reliability CSVs (step 05 for the clean pool; step 11 for the expanded
-# pool). Every prior-study fact is READ from data/prior_studies.csv.
-# The only numeric operations are (a) total problems = 2 * k for x-axis
-# coordinates and (b) rounding for labels. Fully deterministic — no RNG.
-# The figure data CSV carries the curve values string-verbatim (asserted) and
-# the caption's key phrases are machine-checked.
-#
-# The step 08 figure (output/results/step3/fig_reconciliation.*) is RETAINED
-# (supplement, clean-pool-only) — asserted below.
+# Assertions check that the figure-data CSV retains the original curve strings
+# and that the caption includes its required phrases. The step 08 figure in
+# output/results/step3/fig_reconciliation.* is retained as the clean-pool
+# supplement; its presence is checked below.
 
 suppressPackageStartupMessages({
   library(dplyr)
@@ -73,8 +71,8 @@ stopifnot(identical(sort(unique(as.integer(curve_ext$k))), 2:13))
 
 plotted_chr <- bind_rows(curve_clean, curve_ext) |> filter(status == "VERIFIED")
 
-# Expected VERIFIED counts: clean — headline 6 k-points x 2, grey (k>=4) 4 x 3
-# = 24; expanded — headline 12 x 2, grey (k>=4) 10 x 3 = 54. Total 78.
+# Expected counts: clean: headline 6 k-points x 2, grey (k>=4) 4 x 3
+# = 24; expanded: headline 12 x 2, grey (k>=4) 10 x 3 = 54. Total 78.
 counts <- plotted_chr |> count(pool, construct)
 stopifnot(
   all(counts$n[counts$pool == "clean"    & counts$construct %in% constructs_headline] == 6L),
@@ -132,7 +130,7 @@ for (co in c(constructs_headline, constructs_grey)) {
   stopifnot(is.na(first_k_at(plotted_chr |> filter(pool == "expanded"), co, 0.7)))
 }
 
-# ---- Study placements (x-axis only — no y-position on our curves)
+# ---- Study placements (x-axis only; no y-position on our curves)
 fig_studies <- studies |> filter(in_figure == "yes")
 mk <- fig_studies |> filter(str_starts(study_id, "mkrtchian"))
 ws <- fig_studies |> filter(study_id == "walasek_stewart2021")

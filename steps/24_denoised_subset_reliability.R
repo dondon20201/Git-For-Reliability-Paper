@@ -4,27 +4,17 @@
 # Paper:   Study 2 (The information mechanism)
 # Runtime: about 6 hours with 12 parallel workers
 
-# E3b: denoised / subject-split reliability outcome.
+# E3b: exploratory re-test using a lower-noise, subject-split reliability
+# outcome. The frozen pre-specification and H2 FAIL from step 25 remain the
+# confirmatory record. This script does not rerun or replace that gate, fit a
+# mechanism model, optimize a design, or read freeze/test outcomes.
 #
-# EXPLORATORY. The frozen pre-specification and the frozen H2 gate result
-# (step 25, FAIL) stand as the confirmatory record. Nothing here re-runs,
-# re-scores, amends or replaces the frozen H2 gate. This script only BUILDS a
-# lower-noise, honestly-evaluable reliability outcome for an exploratory
-# re-test.
+# Part A partitions the 63 Set-1 build subjects from step 20 into disjoint
+# halves. The 137 freeze and 205 test subjects' choices are excluded by dropping
+# choice/outcome columns from the full-sample frame at load. Part B uses the
+# frozen build generative model and is labeled SIMULATION in every output.
 #
-# It fits NO mechanism model, performs NO optimization, constructs NO candidate
-# design, and reads NO freeze or test outcome.
-#
-# BUILD-ONLY. Part A uses only the 63 Set-1 BUILD subjects of the frozen
-# participant split (step 20), partitioned into disjoint halves. The 137 FREEZE
-# and 205 TEST subjects are NOT read. The guarantee is STRUCTURAL, as in steps
-# 21-22: the full-sample frame has every choice / outcome column DROPPED at
-# load, so only the build-restricted frame can carry a choice. Part B is
-# SIMULATION under the frozen build generative model and is labeled as such
-# everywhere it appears.
-#
-# ENGINE PROVENANCE. The frozen shared engines are SOURCED unchanged and none
-# is redefined:
+# The shared functions are sourced without redefinition:
 #   R/step2_reliability.R  build_subject_data, fit_loss_baselines,
 #                          estimate_half, split_correlations, sb_correct,
 #                          reliability_point
@@ -32,22 +22,17 @@
 #                          add_scaled_features
 #   R/simulate_recovery.R  draw_true_params, analytic_p_b, simulate_choices,
 #                          boot_cor
-# reliability_point (hence split_correlations and sb_correct, which it calls)
-# produces EVERY reported per-set reliability in Part A. boot_cor produces every
-# reported outcome-reliability CI. draw_true_params, simulate_choices and
-# analytic_p_b produce every simulated quantity in Part B.
+# Part A reliabilities use reliability_point, split_correlations, and
+# sb_correct; outcome-reliability intervals use boot_cor. Simulated quantities
+# use draw_true_params, simulate_choices, and analytic_p_b.
 #
-# ACCELERATOR (same device as step 22, not a redefinition). estimate_half
-# always runs the 4-parameter Firth fit that yields b_ev / b_risk / b_loss,
-# which are NOT E3b targets. Evaluating Part A through it directly would need
-# ~2.0e8 calls (~140 h single-threaded at the 1.9-3.6 ms per call measured in
-# step 22). `half_targets()` below evaluates ONLY the two targets,
-# using the SAME formulas as the frozen estimate_half, vectorised over subjects.
-# It is not a substitute definition: gate G_EQ re-runs the frozen estimate_half
-# and asserts agreement to < 1e-12 with identical NA patterns BEFORE any result
-# is produced, and the D1 spot-check re-derives whole sets end-to-end through the
-# frozen engine on both subject halves. The definitions are byte-equivalent to
-# E3's; the equivalence is re-proven here rather than inherited.
+# As in step 22, half_targets() evaluates only the two target indices rather
+# than also fitting the three Firth coefficients. About 2.0e8 full fits would
+# take roughly 140 hours on one thread at the measured 1.9-3.6 ms per call.
+# Before results are produced, G_EQ checks agreement with estimate_half to
+# < 1e-12 with identical NA patterns. D1 reproduces whole sets through the
+# original engine on both subject halves. The accelerator's definitions match
+# E3's, and equivalence is checked again here.
 
 suppressPackageStartupMessages({
   library(tidyverse)
@@ -548,9 +533,9 @@ say("path agreement: committed r_sb vs independent recompute, max |d| = %.3g ove
 # =============================================================================
 # 7. Outcome reliability: cross-half Spearman per (K, target)
 # =============================================================================
-# The honest denominator for a mechanism-model test: a model can at best predict
-# half B to the extent half A already agrees with half B. NO disattenuation is
-# applied; the SB projection column is auxiliary and labeled.
+# Outcome reliability provides the reference for the mechanism-model test:
+# a model can at best predict half B to the extent half A agrees with half B.
+# No disattenuation is applied; the SB projection is an auxiliary, labeled column.
 say("\n=== Outcome reliability (cross-half Spearman, frozen boot_cor) ===\n")
 outcome_reliability_real <- purrr::map_dfr(TARGETS, function(tg) {
   purrr::map_dfr(K_GRID, function(Kv) {

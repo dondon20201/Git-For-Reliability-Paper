@@ -4,31 +4,31 @@
 # Paper:   Study 2 (input to the mechanism model in step 25)
 # Runtime: about 20 seconds with 12 parallel workers
 
-# E3 noise-floor SENSITIVITY (diagnostic, reported alongside the
-# pre-declared gate; it does NOT replace it).
+# E3 noise-floor sensitivity (diagnostic, reported alongside the
+# pre-declared gate; it does not replace it).
 #
 # The pre-declared gate defines sigma2_noise via the reliability_point
 # subject-cluster bootstrap, taken to capture subject-sampling + split
-# noise for a single set. That bootstrap resamples SUBJECTS while holding the
-# 100 halvings FIXED, so the split-draw component of a set's r_sb is not in it.
+# noise for a single set. That bootstrap resamples subjects while holding the
+# 100 halvings fixed, so the split-draw component of a set's r_sb is not in it.
 # Any missing noise inflates sigma2_set_true = sigma2_set_raw - sigma2_noise,
-# which biases the H1 gate TOWARD passing. This script measures the split-draw
+# which biases the H1 gate toward passing. This script measures the split-draw
 # component directly by recomputing r_sb for the same sets under independent
 # split seeds, and reports what the gate would be with the augmented floor.
 #
-# RESULT: the split-draw component is small (sigma2 = 1.6e-4 at the gate cell,
+# The split-draw component is small (sigma2 = 1.6e-4 at the gate cell,
 # 0.8% of the bootstrap noise floor), because r_sb already averages over 100
 # halvings. The H1 verdict is unchanged (ICC 0.6258 -> 0.6230), so this
-# omission does not carry the PASS.
+# omission does not change the H1 verdict.
 #
-# The OPPOSITE bias is the material one and is NOT corrected here: the
+# The opposite bias is the material one and is not corrected here: the
 # subject-cluster bootstrap
-# measures how much a set's r_sb moves when SUBJECTS are resampled, but all
-# sets within a form are scored on the SAME subjects, so that component is
-# largely COMMON across sets and does not contribute to across-set variance.
+# measures how much a set's r_sb moves when subjects are resampled, but all
+# sets within a form are scored on the same subjects, so that component is
+# largely common across sets and does not contribute to across-set variance.
 # Subtracting it therefore over-subtracts, which is why 32 of 50 cells return
 # sigma2_set_raw - sigma2_noise < 0 (clamped to 0). Reported sigma_set_true is
-# consequently a LOWER bound and the H1 PASS is conservative.
+# consequently a lower bound and the H1 PASS is conservative.
 #
 # This script re-uses the vectorised target path by copy (it is a standalone
 # diagnostic, not an independent re-derivation) and produces no headline number;

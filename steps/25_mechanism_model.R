@@ -4,25 +4,20 @@
 # Paper:   Study 2 (The information mechanism)
 # Runtime: about 4 minutes, single process
 
-# E4: mechanism model (Study 2 core) - the H2 gate. Predicts each problem
-# set's split-half reliability from pre-declared set-level problem features.
+# E4: H2 gate for predicting each problem set's split-half reliability from
+# pre-declared set-level features.
 #
-# A MODELING step on set-level outputs of earlier steps only: the E2
-# problem-information dictionary, the two E3 per-set reliability files (real
-# within-form and simulation free-composition), and E3's per-set split-noise
-# diagnostic used by the outcome-noise robustness. It reads NO raw data, NO
-# participant choices, and NO participant split file. It recomputes NO
-# reliability and fits NO choice model. Build-only is therefore STRUCTURAL, not
-# filter-dependent: no participant-level record is ever loaded, so the 205
-# held-out test subjects and the 137 freeze subjects cannot enter by any path.
-# The finest granularity present in any input is the SET.
+# Inputs are the E2 problem-information dictionary, E3's real within-form and
+# simulated free-composition reliability tables, and E3's split-noise diagnostic.
+# All inputs are set-level, build-only outputs. No raw data, participant
+# choices, or participant split file is loaded, so the 137 freeze and 205 test
+# subjects cannot contribute. Reliabilities are not recomputed and no choice
+# model is fitted.
 #
-# NO optimization, NO candidate-design construction, NO freeze/test read. The
-# primary model is the PRE-DECLARED low-dimensional linear one; ridge and PLS
-# are ROBUSTNESS only and never gate.
-#
-# SIMULATION LABELLING. The sim_free105 and sim_anchor_set1 tracks consume E3
-# SIMULATION reliabilities and are labeled SIMULATION in every output.
+# The primary gate uses the pre-declared low-dimensional linear model. Ridge
+# and PLS are robustness checks only. This step does not optimize or construct
+# candidate designs. The sim_free105 and sim_anchor_set1 tracks use E3's
+# simulated reliabilities and are labeled SIMULATION in every output.
 
 suppressPackageStartupMessages({
   library(tidyverse)
@@ -578,16 +573,15 @@ save_csv(POOL, "cv_performance_pooled_K")
 # with probability proportional to the mean bootstrap multiplicity of a set's
 # problems. Because that weight has mean 1 and standard deviation of order
 # 1/sqrt(K), the dominant variance term is the ordinary n-out-of-n set resample,
-# so the interval it produces is close to a NON-cluster-aware one and is far too
+# so the interval it produces is close to a non-cluster-aware one and is too
 # narrow for a design where 500 sets are built from 105 problems. That is a
 # defect of the pre-declared bootstrap scheme.
 #
-# The pre-declared interval is NOT replaced or deleted; it is reported as run.
-# This adds an honest second estimate of the same quantity: delete each problem
-# in turn, recompute the statistic on the sets that do NOT contain it, and form
-# the standard delete-one jackknife standard error over problems. It is
-# deterministic (no RNG) and it moves the G-beyond evidence in the CONSERVATIVE
-# direction, which is the direction a defect of this kind must be resolved in.
+# Retain the pre-declared interval and add a second estimate of the same
+# quantity: delete each problem in turn, recompute the statistic on sets that
+# do not contain it, and calculate the delete-one jackknife standard error
+# over problems. This is deterministic and makes the G-beyond evidence more
+# conservative.
 jack_rows <- list()
 for (tk in c(GATE_TRACK_SIM, GATE_TRACK_REAL)) for (tg in TARGETS) {
   for (K in K_GRID) {

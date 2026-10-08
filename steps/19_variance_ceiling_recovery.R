@@ -4,23 +4,20 @@
 # Paper:   Study 2 (Locating the ceiling); Abstract; Discussion
 # Runtime: about 2 minutes with 12 parallel workers
 
-# E0 Part B.4: RECOVERY GATE for the variance-ceiling estimator.
-# ============================== SIMULATION ==================================
-# Every number this script produces is SIMULATED and is labeled as such. It is
-# never an empirical result. Purpose (prove recovery before trusting the
-# estimator): simulate subjects from a plausible per-subject choice model on the
-# REAL clean-problem features, at several planted true-variance levels INCLUDING
-# a zero-variance population, then run the identical B.1-B.2 decomposition.
+# E0 Part B.4: simulation recovery check for the variance-ceiling estimator.
+# Simulated subjects use the real clean-problem features and several planted
+# true-variance levels, including zero. The recovery tables are SIMULATION
+# results. The final ceiling table combines these verdicts with the empirical
+# estimates from step 18.
 #
-# CONFIRM (pre-declared): (a) sigma2_true is recovered within its bootstrap CI at
-# each planted level, and (b) the zero-variance population returns a sigma2_true
-# CI that includes 0 -- the estimator must NOT manufacture trait variance from
-# trial/item noise. If recovery fails for a construct, its real-data ceiling is
-# marked NOT TRUSTWORTHY.
+# The pre-declared checks require sigma2_true's bootstrap CI to cover each
+# planted level and to include 0 for the zero-variance population. The latter
+# checks that trial/item noise does not produce apparent trait variance.
+# If recovery fails, the construct's empirical ceiling is marked NOT TRUSTWORTHY.
 #
-# The decomposition helpers are sourced from step 18 (E0_LIB_ONLY),
-# so the estimator is byte-identical to the real-data run. The construct
-# estimator is estimate_half() from R/step2_reliability.R.
+# The B.1-B.2 decomposition helpers are sourced from step 18 (E0_LIB_ONLY),
+# using the same code as the empirical analysis. The construct estimator is
+# estimate_half() from R/step2_reliability.R.
 
 E0_LIB_ONLY <- TRUE
 suppressPackageStartupMessages({

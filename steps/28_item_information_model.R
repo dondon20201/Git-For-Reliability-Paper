@@ -4,40 +4,30 @@
 # Paper:   The reliability ceiling reflects true-score variance (A joint model of item information); Supplement
 # Runtime: about 73 minutes with 12 parallel workers
 
-# P2: joint item-information / IRT mechanism model.
+# P2: exploratory joint item-response model of problem discrimination
+# lambda_j and participant trait u_i. It tests the proposed pathway from
+# information features to item discrimination to set reliability that the
+# two-stage H2 test (E4, step 25) did not detect. The pre-specified H2 FAIL
+# remains the confirmatory result, regardless of P2's outcome.
 #
-# QUESTION: can a JOINT item-response model, estimating each problem's
-# discrimination lambda_j and each subject's latent trait u_i TOGETHER, recover
-# the Study-2 mechanism (information features -> item discrimination -> set
-# reliability) that the frozen two-stage H2 test (E4, step 25) could not detect?
+# All estimates use the 344 build subjects from step 20. Choice/outcome columns
+# are dropped from the full-sample frame, excluding the 137 freeze and 205 test
+# subjects' choices. No designs are optimized or constructed.
 #
-# P2 is EXPLORATORY. The pre-specified H2 FAIL (E4) stands and is NOT replaced.
-# A failed gate is a valid scientific outcome; the analysis is never
-# repurposed to pass.
+# The shared R/ functions (build_subject_data, fit_loss_baselines, estimate_half,
+# load_cpc18, is_clean_row, clean_problem_features, add_scaled_features) are
+# sourced without redefinition. E2 features (step 21), E3b outcomes (step 24),
+# and E0 ceilings (step 18) are read from their frozen, md5-checked files.
+# Before loading estimation, D1_SPOT checks exact agreement between this
+# script's count matrix and the loss-informative trial construction through
+# estimate_half for every build subject.
 #
-# BUILD-ONLY. Every quantity uses the 344 BUILD subjects of the frozen
-# participant split (step 20). The 137 FREEZE subjects are not read; the 205
-# TEST subjects stay sealed. Structural guarantee: the full-sample frame has every
-# choice/outcome column DROPPED at load, so only the build-restricted frame can
-# carry a choice. NO optimization, NO candidate designs, NO freeze/test read.
+# Phase 1a fits the joint model and checks G0 (identifiability). If G0 fails,
+# the script writes the identifiability results and stops. Phase 1b
+# (G1/G2/G3 and HG1-HG4) runs only if G0 passes.
 #
-# The frozen engines in R/ (build_subject_data, fit_loss_baselines,
-# estimate_half, load_cpc18, is_clean_row, clean_problem_features,
-# add_scaled_features) are SOURCED unchanged and none is redefined.
-# The E2 features (step 21), E3b outcomes (step 24) and E0 ceilings (step 18)
-# are READ from their frozen files (md5-asserted below), never recomputed. Gate D1_SPOT re-derives
-# the frozen loss-informative trial construction through estimate_half on every
-# build subject and asserts BIT-IDENTICAL agreement with this script's count
-# matrix before any loading is fit.
-#
-# PHASE STRUCTURE: Phase 1a fits the joint model and evaluates
-# G0 (identifiability). If G0 FAILS the script writes the identifiability
-# outputs and stops without running G1-G3 on real data. Phase 1b (G1/G2/G3 +
-# HG1-HG4) runs only if G0 passes.
-#
-# SMOKE MODE: P2_SMOKE=1 shrinks loop counts and redirects ALL outputs to a
-# scratch directory. It never writes to the results directory and its numbers
-# are never results.
+# P2_SMOKE=1 reduces loop counts and redirects outputs to a scratch directory.
+# Smoke-run numbers are not research results.
 
 suppressPackageStartupMessages({
   library(tidyverse)
@@ -728,7 +718,7 @@ say("G0d null-A: beta 90%% [%.4f, %.4f] -> %s\n", nulla_ci[1], nulla_ci[2],
 say("G0d null-B: beta 90%% [%.4f, %.4f] ; median lambda %.4f -> %s\n",
     nullb_ci[1], nullb_ci[2], nullb_lam, if (g0d_null_b) "PASS" else "FAIL")
 
-# ---- Added honesty diagnostic (labeled; NOT a pre-declared gate) ----------
+# ---- Added overdispersion diagnostic (not a pre-declared gate) -----------
 # The pre-declared Null-B simulates under the model's OWN Binomial(20)
 # likelihood. The real cells are strongly overdispersed relative to
 # Binomial(20), so an additional diagnostic destroys any common trait while
@@ -1063,7 +1053,7 @@ if (!g0) {
 }
 
 # =============================================================================
-# 8. PHASE 1b: G1 / G2 / G3 + honesty guards (only if G0 PASSED)
+# 8. Phase 1b: G1 / G2 / G3 + HG1-HG4 (only if G0 passes)
 # =============================================================================
 say("\n=== PHASE 1b: G1 / G2 / G3 + HG1-HG4 ===\n")
 
@@ -1075,7 +1065,7 @@ g1_pass <- is.finite(g1_cv) && g1_cv >= G1_CV_MIN && is.finite(g1_delta) &&
 say("G1 (simulation mechanism): median CV Spearman %.4f (>= %.2f), delta vs baseline %.4f (> 0) -> %s\n",
     g1_cv, G1_CV_MIN, g1_delta, if (g1_pass) "PASS" else "FAIL")
 
-# G2: the same relationship on real BUILD (honesty check, not a headline).
+# G2: compare the same relationship on empirical build data with G1.
 g2_cv <- mech_real$cv_spearman
 g2_sign_agree <- sign(mech_real$beta[F4_RESID]) ==
   sign(stats::median(gv("recovery", "beta_planted_feature"), na.rm = TRUE))

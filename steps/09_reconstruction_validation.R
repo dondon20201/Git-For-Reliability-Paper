@@ -4,22 +4,20 @@
 # Paper:   Methods (Problem pools)
 # Runtime: a few seconds
 
-# Multi-outcome reconstruction VALIDATION GATE.
+# Validate the full outcome distributions of both options in all 210 CPC18
+# problems. R/lotshape_reconstruction.R reconstructs them from
+# (H, pH, L, LotShape, LotNum); the reference is CPC18_getDist.R, fetched and
+# md5-verified by R/fetch_official_cpc18.R.
 #
-# Reconstructs the full outcome distribution of every option of all 210 CPC18
-# problems from (H, pH, L, LotShape, LotNum) with R/lotshape_reconstruction.R
-# and validates it against the OFFICIAL CPC18 baseline implementation
-# (CPC18_getDist.R, fetched + md5-verified by R/fetch_official_cpc18.R).
-#
-# HARD GATE (pre-declared; all four checks asserted in-code; if ANY fails
-# this script stops AFTER writing the validation table):
-#   1. Enumeration matches the official implementation EXACTLY (all 210
-#      problems, both options). Supplementary: matches the organizer-produced
+# The pre-declared gate writes the validation table, then stops if any of
+# these checks fails:
+#   1. Enumeration matches the official implementation exactly for every
+#      problem and option. A supplementary comparison checks the organizer's
 #      CPC18_EstSet_fullDist.csv within 1e-9 (CSV decimal round-trip).
-#   2. Every option's probabilities sum to 1 (tolerance 1e-9).
-#   3. LotNum == 1 options reduce exactly to the two-outcome (H, pH, L) form.
-#   4. EVs recomputed via the reconstruction match the values used in steps
-#      04-05 (clean_problem_features) exactly on the clean two-outcome subset.
+#   2. Each option's probabilities sum to 1 within 1e-9.
+#   3. LotNum == 1 reduces exactly to the two-outcome (H, pH, L) form.
+#   4. Reconstructed EVs match clean_problem_features from steps 04-05 exactly
+#      on the clean two-outcome subset.
 
 library(tidyverse)
 library(here)

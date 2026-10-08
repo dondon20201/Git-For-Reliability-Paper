@@ -4,17 +4,12 @@
 # Paper:   Pre-specified hypotheses and outcomes (table)
 # Runtime: a few seconds
 
-# The hypothesis ledger.
+# One row per pre-specified hypothesis or robustness analysis, recording the
+# criterion committed to version control before results existed, the outcome,
+# and the status. Pre-declared null results and failed gates are retained.
 #
-# One row per pre-specified hypothesis / robustness analysis, recording the
-# criterion COMMITTED TO VERSION CONTROL BEFORE its results existed, the
-# outcome, and the status. Every pre-declared null and every honest
-# pre-declared FAIL is preserved as a result; none is revised.
-#
-# The ledger wording is fixed text. This script writes it through an RFC-4180
-# CSV writer and then cross-checks the quantitative claims in the outcome
-# column against the cell files written by 36_summary_cells.R, so the ledger
-# cannot drift from the numbers it summarises.
+# Write the fixed wording as RFC-4180 CSV, then check the quantitative claims
+# against the cell files from 36_summary_cells.R.
 
 suppressPackageStartupMessages({
   library(dplyr)

@@ -27,14 +27,14 @@
 #       problems and k for reliability .7, each with k_ref = 14 (the frozen
 #       median) and with k_ref = harmonic mean of per-subject problem counts.
 #       The pooled values are recomputed with the frozen
-#       cluster_bootstrap_ceiling() and ASSERTED to reproduce the step 18
+#       cluster_bootstrap_ceiling() and asserted to reproduce the step 18
 #       variance_ceiling.csv exactly. Within-form
 #       intervals: 2000-draw subject bootstrap stratified by form, percentile 95%.
 #   B3  Within-form split-half. Strict grid (step 05, axis i_exp,
 #       k 2-7, r 20) and expanded grid (step 11, axis i_exp_ext, k 2-13,
 #       r 20), all five constructs. run_cell() is re-run with the original cell
 #       seeds and reliability_point() with the original bootstrap seeds; the
-#       pooled rows are ASSERTED to reproduce reliability_by_cell_construct.csv
+#       pooled rows are asserted to reproduce reliability_by_cell_construct.csv
 #       (step 05) and reliability_extended.csv (step 11) exactly. Within-form
 #       statistic per split:
 #       n-weighted mean of per-form Spearman correlations over forms with at
@@ -42,7 +42,7 @@
 #       splits, Spearman-Brown corrected. Interval: 2000-draw subject bootstrap
 #       stratified by form, splits held fixed, percentile 95%.
 #
-# Frozen engines are SOURCED, never redefined: R/cpc18_features.R,
+# Frozen engines are sourced without redefinition: R/cpc18_features.R,
 # R/step2_reliability.R, steps/18_variance_ceiling.R (with
 # E0_LIB_ONLY <- TRUE), and, for the expanded pool's features only,
 # R/lotshape_reconstruction.R (the same reconstruction step 11 uses).

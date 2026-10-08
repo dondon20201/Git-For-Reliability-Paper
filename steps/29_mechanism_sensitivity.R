@@ -4,41 +4,31 @@
 # Paper:   Study 2; Supplement (Mechanism sensitivity and the attenuation bound), through step 36
 # Runtime: about 7.3 hours with 12 parallel workers
 
-# SENS: mechanism sensitivity and detection curve.
+# SENS: simulation calibration of mechanism detectability and attenuation.
+# Every planted-mechanism result is labeled SIMULATION. The H2 FAIL from
+# 25_mechanism_model.R remains unchanged; this script neither fits a new
+# empirical mechanism nor optimizes or constructs candidate designs.
 #
-# SIMULATION calibration of DETECTABILITY. Every planted-mechanism number in
-# this script is simulated and labeled SIMULATION. Nothing here re-runs,
-# re-scores, amends or replaces the frozen H2 gate result of
-# 25_mechanism_model.R (FAIL), which stands. This script fits NO new real-data
-# mechanism, performs NO optimization, constructs NO candidate design.
+# Inputs are build-only outputs from E2 (step 21), E3 (22), E3b (24), and E4
+# (25), plus the frozen simulation and scoring functions. No raw participant
+# data is loaded. The step 20 split file is read only to check the 344/137/205
+# group counts; freeze and test choices are excluded.
 #
-# BUILD-ONLY, STRUCTURALLY: this script reads NO raw participant data at all.
-# Its inputs are build-only outputs of earlier steps (labels below: E2 = 21,
-# E3 = 22, E3b = 24, E4 = 25) plus the frozen R/ simulation and scoring
-# engines. The participant split file (step 20) is read only to assert the
-# 344/137/205 counts. No freeze or test record can enter by any path; the 205
-# test subjects stay sealed.
+# R/step2_reliability.R and R/simulate_recovery.R are sourced unchanged.
+# The needed functions and constants from steps 22 and 25 are extracted by
+# parsing and evaluating their named top-level definitions (section 0),
+# preserving the original function bodies.
 #
-# Frozen engines are SOURCED, none is redefined: R/step2_reliability.R and
-# R/simulate_recovery.R via source(); the subset-reliability functions and
-# constants of 22_problem_subset_reliability.R and the gate functions and
-# constants of 25_mechanism_model.R are extracted by parsing those files and
-# evaluating exactly the named top-level definitions (section 0), so their
-# bodies are byte-identical to the originals.
-# Gate G_E4EQ below re-runs the extracted gate machinery on the committed E4
-# real-form-1 input rows with E4's own seeds and asserts it reproduces the
-# committed cv_performance / pooled numbers EXACTLY before any planted-data
-# gate is evaluated. Gate G_EQ proves the simulated-data scoring path equals
-# the frozen estimate_half. Gate G_GEN proves the planted generator equals the
-# frozen analytic_p_b under the declared parameter substitution and reduces to
-# the frozen generator at beta = 0.
+# Before any planted-data gate is evaluated, G_E4EQ reproduces the committed
+# E4 cv_performance and pooled statistics on the real form-1 inputs with E4's
+# seeds. G_EQ checks the simulated scoring path against estimate_half. G_GEN
+# checks the planted generator against analytic_p_b under the declared
+# parameter substitution and against the original generator at beta = 0.
 #
-# GATE DESIGN. The frozen E4 gate is repeated SET-level 70/30 holdout within K
-# with a problem-level cluster bootstrap, whose empirical anchor track is form
-# 1; it has no leave-one-form-out fold. This script runs that gate as
-# implemented, on planted data built to the same form-1 design (63 subjects,
-# the form's 24 clean problems, r = 20 experience trials), rather than
-# inventing a new fold scheme.
+# The frozen E4 gate uses repeated set-level 70/30 holdout within K and a
+# problem-level cluster bootstrap. Its empirical anchor is form 1; there is no
+# leave-one-form-out fold. The planted data follow that same design: 63
+# subjects, 24 clean problems, and r = 20 experience trials.
 
 suppressPackageStartupMessages({
   library(tidyverse)

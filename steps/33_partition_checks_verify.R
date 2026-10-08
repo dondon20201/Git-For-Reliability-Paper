@@ -4,40 +4,27 @@
 # Paper:   Study 2 and Supplement, through step 36
 # Runtime: about 1 minute with 12 parallel workers
 
-# Engine-provenance verification (gate D1) for the partition checks
-# (steps 30-32), and the assembler for their combined outputs.
+# Verify the scoring engine for steps 30-32 (gate D1), then assemble their
+# outputs. B1 and B2 use a vectorised path for loss_avoid_adj and ev_sens_agn
+# to avoid the unused four-parameter Firth fits for b_ev / b_risk / b_loss.
+# G_EQ checks this path against estimate_half to < 1e-12 with identical NA
+# patterns. Whole-set r_sb checks use the original engine on all 63 Set-1
+# build subjects and on a disjoint subject half.
 #
-# WHAT THIS IS. Two jobs, in this order:
-#   (1) GATE G_EQ. B1 and B2 evaluate only the two targets (loss_avoid_adj,
-#       ev_sens_agn) through a vectorised accelerator, because the frozen
-#       estimate_half always runs the 4-parameter Firth fit that yields
-#       b_ev / b_risk / b_loss, and those three are not targets here. G_EQ
-#       re-runs the FROZEN estimate_half on a sample of halves and asserts the
-#       accelerator agrees to < 1e-12 with identical NA patterns. A whole-set
-#       spot check then closes the loop at the level of a set's r_sb, on the
-#       full 63 Set-1 build subjects AND on a disjoint subject half, entirely
-#       through the frozen engine.
-#   (2) ASSEMBLY. If (and only if) steps 30-32 have already written their part
-#       files, this script merges them into combined gate, config and seed
-#       files. G_EQ is re-proved from the same seed on every run, so its
-#       evidence is deterministic.
+# When steps 30-32 have written their part files, combine the gate,
+# configuration, and seed files. G_EQ uses the same seed on each run.
 #
-# BUILD-ONLY. Only the 344 BUILD subjects of the frozen E1 split are read. The
-# 137 FREEZE subjects are NOT read; the 205 TEST subjects stay SEALED. The
-# guarantee is structural: the full-sample frame has every choice / outcome
-# column DROPPED at load, so no freeze or test choice can reach any
-# computation.
-#
-# ENGINE PROVENANCE. The frozen engines are SOURCED unchanged and none is
-# redefined here or in steps 30-32:
+# Only the 344 build subjects from step 20 are read. Choice/outcome columns
+# are dropped from the full-sample frame, excluding the 137 freeze and 205 test
+# subjects' choices. The shared functions are sourced without redefinition
+# here and in steps 30-32:
 #   R/step2_reliability.R  build_subject_data, fit_loss_baselines,
 #                          estimate_half, split_correlations, sb_correct,
 #                          reliability_point
 #   R/cpc18_features.R     load_cpc18, is_clean_row, clean_problem_features,
 #                          add_scaled_features
-# NO optimization, NO candidate-design construction, NO new choice-model fit,
-# NO freeze or test read, and the frozen E3 h1_gate / E4 h2_gate are neither
-# re-run nor amended.
+# No designs are optimized or constructed, no new choice model is fitted,
+# and the frozen E3 h1_gate and E4 h2_gate are neither rerun nor amended.
 
 suppressPackageStartupMessages({
   library(tidyverse)

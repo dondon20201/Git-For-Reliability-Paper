@@ -14,7 +14,7 @@
 #   higher-SD option. NA if the subject has no qualifying problem.
 # - loss_avoid_agn: among loss-informative problems (loss in exactly one
 #   option), proportion of trials choosing the no-loss option.
-# - loss_avoid_adj: EV-adjusted variant — per-trial residual y - p_hat, where
+# - loss_avoid_adj: mean per-trial EV-adjusted residual y - p_hat, where
 #   y = chose no-loss option and p_hat comes from ONE pooled (all subjects)
 #   logistic regression y ~ dEV_noloss (dEV_noloss = EV(no-loss option) -
 #   EV(loss option)); the index is the subject's mean residual. The pooled

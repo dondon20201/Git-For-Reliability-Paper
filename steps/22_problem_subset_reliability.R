@@ -5,23 +5,17 @@
 # Paper:   Methods (Equal-length subset benchmark and mechanism model); Study 2 (Equal-length heterogeneity)
 # Runtime: about 27 minutes with 12 parallel workers
 
-# E3: same-count subset benchmark and the H1 premise gate.
+# E3: same-count subset benchmark and H1 gate.
+# At a fixed number K of unique clean problems, test whether held-out
+# reliability varies materially across item sets. Report either gate outcome.
 #
-# QUESTION (H1): at a fixed number K of unique clean problems, does held-out
-# reliability vary MATERIALLY across item sets? A FAIL is a valid scientific
-# result and is reported as such; it is never engineered away.
+# The empirical analysis uses the 344 build subjects from step 20. Choice and
+# outcome columns are dropped from the full-sample frame at load; only the
+# build-restricted frame retains them. The 137 freeze and 205 test subjects'
+# choices are excluded. This step does not optimize designs or fit the
+# mechanism model (step 25). Part C is labeled SIMULATION in every output.
 #
-# BUILD-ONLY. Every quantity uses the 344 BUILD subjects of the frozen
-# participant split (step 20). The 137 FREEZE and 205 TEST subjects are NOT
-# read here. The guarantee is structural, as in step 21: the full-sample frame
-# has every choice / outcome column DROPPED at load, so only the
-# build-restricted frame can carry a choice.
-#
-# NO optimization, NO mechanism-model fit (that is step 25), NO reading of any
-# freeze/test outcome. Part C is SIMULATION and is labeled as such everywhere.
-#
-# ENGINE PROVENANCE. The frozen shared engines are SOURCED unchanged and none
-# is redefined:
+# The shared functions are sourced without redefinition:
 #   R/step2_reliability.R  build_subject_data, fit_loss_baselines,
 #                          estimate_half, split_correlations, sb_correct,
 #                          reliability_point
@@ -29,21 +23,18 @@
 #                          add_scaled_features
 #   R/simulate_recovery.R  draw_true_params, analytic_p_b, simulate_choices,
 #                          fit_subject_firth
-# split_correlations, sb_correct, reliability_point, fit_subject_firth,
-# simulate_choices, draw_true_params and analytic_p_b are called DIRECTLY on
-# every reported number.
+# Scoring uses split_correlations, sb_correct, and reliability_point directly;
+# simulation uses fit_subject_firth, simulate_choices, draw_true_params, and
+# analytic_p_b directly.
 #
-# ACCELERATOR (not a redefinition). Part A requires ~3.2e8 estimate_half
-# evaluations; measured at 1.9-3.6 ms per call that is ~9 days of
-# single-threaded compute, because estimate_half always runs the 4-parameter
-# Firth fit that yields b_ev/b_risk/b_loss - and those three are NOT E3
-# targets. `half_targets()`
-# below evaluates ONLY the two E3 targets, using the SAME formulas as the
-# frozen estimate_half, vectorised over subjects. It is not a substitute
-# definition: gate G_EQ re-runs the frozen estimate_half and asserts agreement
-# to < 1e-12 with identical NA patterns before any result is produced, and the
-# D1 fixed-set spot-check re-derives a whole cell's per-split Spearman through the
-# frozen engine.
+# Part A needs about 3.2e8 half-estimate evaluations. At the measured 1.9-3.6 ms
+# per call, running the full four-parameter Firth fit would take about nine days
+# on one thread. The three fitted coefficients are not E3 targets, so
+# half_targets() computes only the two target indices with the same formulas,
+# vectorised over subjects. Before results are produced, G_EQ compares this
+# path with estimate_half to < 1e-12 with identical NA patterns. The D1
+# fixed-set spot check also reproduces a whole cell's per-split Spearman
+# correlations through the original engine.
 
 suppressPackageStartupMessages({
   library(tidyverse)

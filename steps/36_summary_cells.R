@@ -5,26 +5,18 @@
 # Paper:   Study 2; The reliability ceiling reflects true-score variance; Supplement; Abstract
 # Runtime: a few seconds
 
-# Surface already-computed values into small "manuscript cell" CSVs.
+# Copy previously computed results into the small CSVs used by the manuscript.
+# Each value comes from an earlier gate JSON or results CSV, with its source
+# field recorded. No model is fitted or re-estimated. The only arithmetic is
+# a median and a count over the existing per-parameter retest values in
+# p3_frey/modelpar_reliability.csv; both are checked below.
 #
-# PURE SURFACING. Nothing here is estimated, re-fit, or re-derived from data:
-# every value is COPIED out of an existing gate JSON or results CSV written by
-# an earlier step, and the source field is recorded alongside it. The only
-# arithmetic performed is (a) a median and (b) a count over the existing
-# per-parameter retest values in p3_frey/modelpar_reliability.csv, both
-# self-checked below.
+# Values retain the source's full precision (shortest exact round-trip
+# representation). Each write is checked against the expected value at its
+# quoted precision. The manuscript uses num(..., digits = 2) to round for display.
 #
-# Fidelity policy: values are written at the FULL precision of the source
-# (shortest exact round-trip representation), never at a rounded precision.
-# Each write is self-checked against an expected value at the precision that
-# value is quoted. The manuscript renders these through num(..., digits = 2),
-# so full precision in the cell file and rounded precision in the prose agree
-# by construction.
-#
-# p3_frey/modelpar_reliability.csv is modified additively (2 summary rows +
-# 1 column; existing cells stay byte-identical).
-#
-# Deterministic - no RNG.
+# Two summary rows and one column are added to p3_frey/modelpar_reliability.csv;
+# existing cells remain byte-identical. There is no random sampling.
 
 suppressPackageStartupMessages({
   library(readr)

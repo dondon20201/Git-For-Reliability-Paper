@@ -4,11 +4,11 @@
 # Paper:   Methods (Validation gates); no number in the paper is read from it
 # Runtime: a few seconds
 
-# Real-subject Firth estimates (step 04) show spearman(b_risk, b_loss) = -0.648.
-# Question: how much estimate-estimate correlation arises from estimation
-# noise ALONE? In the step 02 simulation true parameters are independent by
-# construction, so any correlation among ESTIMATES there is noise/collinearity
-# induced, not trait structure. SIMULATION-DERIVED numbers.
+# The empirical Firth estimates in step 04 have
+# Spearman(b_risk, b_loss) = -0.648. Here the step 02 simulation uses
+# independent true parameters, so correlations among their estimates reflect
+# estimation noise or collinearity rather than trait structure. These results
+# are labeled SIMULATION.
 
 library(dplyr)
 library(here)

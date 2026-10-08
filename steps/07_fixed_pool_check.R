@@ -4,16 +4,14 @@
 # Paper:   Results (Reliability generally increases with distinct-problem count)
 # Runtime: about 15 minutes with 6 parallel workers
 
-# Sanity-anchor investigation of a non-monotone step 05 reliability curve.
+# Check the dip at k = 5 in the step 05 ev_sens_agn curves.
+# The dip occurs in both regimes where eligibility falls from 678 to 556
+# subjects. Budget is therefore confounded with participant composition:
+# each Set has a fixed problem list and clean-problem count.
 #
-# Finding to explain: ev_sens_agn's axis-(i) curve dips at k = 5 in BOTH
-# regimes, exactly where the eligible pool changes (678 -> 556 subjects), so
-# budget is confounded with subject composition (eligibility tracks Set
-# membership: each Set has a fixed problem list, hence a fixed clean count).
-# Test: recompute the experience problems-axis on the FIXED pool of subjects
-# eligible at every k (>= 14 clean problems), k in 2..7. If the dip disappears
-# on the fixed pool, composition — not budget — explains it.
-# REAL DATA.
+# Recompute the experience problems-axis at k = 2..7 using only subjects
+# eligible at every budget (>= 14 clean problems). If the dip disappears,
+# the fixed-cohort comparison supports participant composition as its source.
 
 suppressMessages({library(tidyverse); library(here); library(parallel)})
 source(here("R", "cpc18_features.R"))

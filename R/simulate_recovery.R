@@ -59,10 +59,10 @@ validate_simulator <- function(par_grid, feat, n_reps = 10000) {
   })
 }
 
-# Per-subject logistic estimator with honesty flags:
-#   separation — glm reported fitted probabilities numerically 0 or 1
-#   degenerate — some coefficient inestimable (NA; e.g. a constant predictor)
-#   extreme    — |coefficient| > max_abs_coef (per-SD logits; MLE blow-up)
+# Per-subject logistic estimator with diagnostic flags:
+#   separation: glm reported fitted probabilities numerically 0 or 1
+#   degenerate: some coefficient inestimable (NA; e.g. a constant predictor)
+#   extreme: |coefficient| > max_abs_coef (per-SD logits; MLE blow-up)
 fit_subject <- function(choices, max_abs_coef = 15) {
   separation <- FALSE
   fit <- withCallingHandlers(

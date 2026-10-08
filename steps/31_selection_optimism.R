@@ -4,31 +4,23 @@
 # Paper:   Study 2 (Ruling out alternatives); Supplement (Study 2 robustness detail), through steps 33 and 36
 # Runtime: about 48 minutes with 12 parallel workers
 
-# Probe B2: optimism / winner's curse in set selection, with pre-declared gates
-# G-B2a..c.
+# B2: quantify selection optimism with pre-declared gates G-B2a..c.
+# E3's best-minus-median gap of 0.195 in r_sb used the same 63 subjects to
+# select and score a set. Here sets are ranked on one subject half and scored
+# on a disjoint half, over repeated partitions and in both directions.
 #
-# QUESTION. E3 reported a best-minus-median gap of 0.195 in r_sb across
-# same-count item sets at the primary cell. That gap is measured IN SAMPLE: the
-# same 63 subjects pick the winner and score it. B2 asks how much of it
-# transfers. Sets are ranked on a SELECTION half of the subjects and scored on
-# a DISJOINT EVALUATION half, over many partitions and both directions, so the
-# winner's curse is measured rather than assumed.
+# The analysis re-scores the committed E3 sets without optimizing or
+# constructing a design or fitting a new choice model. The frozen E3 h1_gate
+# and E4 h2_gate are neither rerun nor amended.
 #
-# WHAT THIS IS NOT. NO optimization and NO candidate-design construction: B2
-# does not build a design, it re-scores the SAME committed E3 item sets under a
-# subject split. NO new choice-model fit, NO freeze or test read. The frozen E3
-# h1_gate.json and E4 h2_gate.json are neither re-run nor amended.
+# Only the 63 Set-1 build subjects from step 20 are used. Choice/outcome
+# columns are dropped from the full-sample frame at load, excluding the 137
+# freeze and 205 test subjects' choices.
 #
-# BUILD-ONLY. Only the 63 Set-1 BUILD subjects of the frozen E1 split are used.
-# The 137 FREEZE subjects are NOT read; the 205 TEST subjects stay SEALED. The
-# guarantee is structural: the full-sample frame has every choice / outcome
-# column DROPPED at load.
-#
-# ENGINE PROVENANCE. The frozen engines are SOURCED unchanged; none is
-# redefined. Every r_sb passes through the frozen split_correlations and
-# sb_correct; the strict ceiling reading uses the frozen reliability_point. The
-# accelerator is the one documented in steps 22 and 24, re-proven against the
-# frozen estimate_half by 33_partition_checks_verify.R BEFORE any result exists.
+# Shared functions are sourced without redefinition. Each r_sb uses
+# split_correlations and sb_correct; the strict ceiling reading uses
+# reliability_point. Step 33 checks the accelerator from steps 22 and 24
+# against estimate_half.
 
 suppressPackageStartupMessages({
   library(tidyverse)

@@ -4,37 +4,26 @@
 # Paper:   Study 2 (Ruling out alternatives); Supplement (Study 2 robustness detail), through steps 33 and 36
 # Runtime: about 2 minutes, single process
 
-# Probe B3: leave-one-feature-out on the frozen E4 mechanism model, with
-# pre-declared gates G-B3a..d.
+# B3: leave-one-feature-out checks of the frozen E4 model, with pre-declared
+# gates G-B3a..d. Given the five-feature H2 FAIL, test whether dropping a
+# feature changes the empirical signal, whether expected information (F4) is
+# redundant with loss exposure (F2), and whether the negative F1 coefficient
+# persists in every variant that retains F1.
 #
-# QUESTION. E4's H2 gate FAILED with a five-feature model. B3 asks where the
-# null lives: does dropping any single information feature restore a clean real
-# signal, is expected information (F4) redundant with loss exposure (F2), and
-# does the negative F1 coefficient survive every F1-retaining variant?
+# Inputs are four committed set-level CSVs and E4's saved seeds. No raw data,
+# participant choices, or split file is loaded, and no reliability is
+# recomputed. The 137 freeze and 205 test subjects therefore cannot enter.
+# This step does not optimize designs or fit a new choice model. The original
+# H2 FAIL is retained; a passing variant would be reported as EXPLORATORY.
 #
-# WHAT THIS IS. A MODELING step on COMMITTED outputs, exactly as E4 was. It
-# reads four committed set-level CSVs and the committed E4 seeds, and NOTHING
-# else. It reads NO raw data, NO participant choices and NO E1 split file, and
-# it RECOMPUTES NO RELIABILITY. Build-only is therefore STRUCTURAL, not
-# filter-dependent: no participant-level record is ever loaded, so the 205 TEST
-# subjects (SEALED) and the 137 FREEZE subjects cannot enter by any path. The
-# finest granularity present in any input is the SET.
-#
-# WHAT THIS IS NOT. NO optimization, NO candidate-design construction, NO new
-# choice-model fit. The frozen E4 h2_gate.json is neither re-run nor amended,
-# and the frozen H2 FAIL stands whatever B3 returns; a variant that looked like
-# a PASS would be reported EXPLORATORY and could not overwrite it.
-#
-# PAIRING AND PROVENANCE. E4's modeling primitives are not part of the frozen
-# Study-1 engine (which is sourced, never redefined); they live inside E4's own
-# script (25_mechanism_model.R), which cannot be sourced here because sourcing
-# it would RE-RUN the frozen H2 gate. They are therefore restated below and
-# their fidelity is PROVEN rather than assumed: using the committed E4 CV seeds
-# and the committed analysis samples, the FULL model's out-of-fold statistics
-# and the FULL model's bootstrap interval must reproduce E4's committed
-# cv_performance.csv to < 1e-10 before any LOFO number is reported. Every
-# variant is then scored on the IDENTICAL folds and the IDENTICAL bootstrap
-# resamples, so every drop-one delta is exactly paired with the frozen FULL fit.
+# E4's modeling functions are defined inside 25_mechanism_model.R rather than
+# the shared Study-1 engine. Sourcing that script would rerun the H2 gate,
+# so its functions are restated here. Before any LOFO result is reported, the
+# full model must reproduce E4's committed cv_performance.csv statistics and
+# bootstrap interval to < 1e-10 using the saved seeds and analysis samples.
+# Each variant uses the same folds and bootstrap resamples as the full model,
+# making the drop-one differences paired. The shared Study-1 engine is sourced
+# without redefinition.
 
 suppressPackageStartupMessages({
   library(tidyverse)
