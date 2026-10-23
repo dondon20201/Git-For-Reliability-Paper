@@ -1,6 +1,6 @@
 # Provenance and reproducibility
 
-This record originated from `analysis/e11_manifest.R` in the development repository. The timeline below reports dates from that history. Those commits are not part of this repository's Git history, so their order cannot be verified here.
+This is from the development repository, from the file `analysis/e11_manifest.R`. The dates below are from that repository's history. Because these commits are not in this repository's Git history, the order of these commits cannot be verified here.
 
 ## Primary data: CPC18 estimation raw data
 
@@ -18,7 +18,7 @@ This record originated from `analysis/e11_manifest.R` in the development reposit
 
 ## Pre-specification timeline
 
-The dates below were reported from the development repository's history. They are kept here as a historical record, not as dates established by this repository's commits:
+These dates are from the history of the development repository. They are preserved here for archival purposes, and are not dates defined by commits within this repository:
 
 | Specification | Spec committed | Results committed | Order |
 |---|---|---|---|
@@ -37,7 +37,7 @@ Pre-declared thresholds were fixed before results existed; the pre-declared fail
 ## Environment
 
 - R 4.6.1, dependencies pinned by `renv.lock` (`renv::restore()` reproduces the library).
-- In the development repository, the manuscript was rendered with Quarto to docx and pdf (typst). At that stage, quantitative values were rendered through `num()` from `results/step5/manuscript_numbers.csv`, with a render guard in `R/verify_manuscript_numbers.R`. Those manuscript files and the guard are not included here; the final preprint was edited after that stage.
+- In the development repository, the manuscript was generated using Quarto to pdf (typst) and docx. The numerical values were rendered using `num()` from the file `results/step5/manuscript_numbers.csv`. A render check was implemented in the file `R/verify_manuscript_numbers.R`. The manuscript files and render check are not included in this repository. The preprint was then modified after this step.
 
 ## Analysis manifest
 
