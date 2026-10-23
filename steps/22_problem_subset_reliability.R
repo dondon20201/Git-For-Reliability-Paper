@@ -5,36 +5,39 @@
 # Paper:   Methods (Equal-length subset benchmark and mechanism model); Study 2 (Equal-length heterogeneity)
 # Runtime: about 27 minutes with 12 parallel workers
 
-# E3: same-count subset benchmark and H1 gate.
-# At a fixed number K of unique clean problems, test whether held-out
-# reliability varies materially across item sets. Report either gate outcome.
-#
-# The empirical analysis uses the 344 build subjects from step 20. Choice and
-# outcome columns are dropped from the full-sample frame at load; only the
-# build-restricted frame retains them. The 137 freeze and 205 test subjects'
-# choices are excluded. This step does not optimize designs or fit the
-# mechanism model (step 25). Part C is labeled SIMULATION in every output.
-#
-# The shared functions are sourced without redefinition:
-#   R/step2_reliability.R  build_subject_data, fit_loss_baselines,
-#                          estimate_half, split_correlations, sb_correct,
-#                          reliability_point
-#   R/cpc18_features.R     load_cpc18, is_clean_row, clean_problem_features,
-#                          add_scaled_features
-#   R/simulate_recovery.R  draw_true_params, analytic_p_b, simulate_choices,
-#                          fit_subject_firth
-# Scoring uses split_correlations, sb_correct, and reliability_point directly;
-# simulation uses fit_subject_firth, simulate_choices, draw_true_params, and
-# analytic_p_b directly.
-#
-# Part A needs about 3.2e8 half-estimate evaluations. At the measured 1.9-3.6 ms
-# per call, running the full four-parameter Firth fit would take about nine days
-# on one thread. The three fitted coefficients are not E3 targets, so
-# half_targets() computes only the two target indices with the same formulas,
-# vectorised over subjects. Before results are produced, G_EQ compares this
-# path with estimate_half to < 1e-12 with identical NA patterns. The D1
-# fixed-set spot check also reproduces a whole cell's per-split Spearman
-# correlations through the original engine.
+# E3: Same-count subset test and H1 gate.
+# Test if reliability on hold-out data varies materially across item
+# sets, for a fixed number K of distinct clean problems. Output the
+# result from the gate.
+# For the experiment, we use the build subjects from step 20 (344). We
+# load the full sample data and drop the choice and outcome columns
+# from the full sample data frame. We only keep these columns in the
+# build data frame. We drop the choices of the 137 freeze subjects
+# and the 205 test subjects. We do not perform design optimization
+# or fit the mechanism model in this step (step 25). In all output,
+# Part C is called SIMULATION.
+# We use the following functions from the shared code without
+# redefinition:
+# R/step2_reliability.R build_subject_data, fit_loss_baselines,
+# estimate_half, split_correlations, sb_correct,
+# reliability_point
+# R/cpc18_features.R load_cpc18, is_clean_row, clean_problem_features,
+# add_scaled_features
+# R/simulate_recovery.R draw_true_params, analytic_p_b, simulate_choices,
+# fit_subject_firth
+# We use split_correlations, sb_correct and reliability_point directly
+# for scoring. For simulation, we use draw_true_params, analytic_p_b,
+# simulate_choices and fit_subject_firth directly.
+# Part A requires approximately 3.2e8 evaluations of half-estimates. With
+# the measured 1.9-3.6 ms per evaluation, a full four parameter Firth
+# fit would take roughly nine days on a single thread. The three
+# fitted parameters are not part of E3. half_targets() only evaluates
+# the two target indices using the same code as for the E3 targets,
+# but vectorized over subjects. Prior to computing results, this path
+# is compared to estimate_half and found to be within < 1e-12 with
+# identical patterns of NA. The fixed-set test in D1 also correctly
+# recreates the per-split Spearman correlations for an entire cell
+# using the original code.
 
 suppressPackageStartupMessages({
   library(tidyverse)
