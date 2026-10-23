@@ -1,29 +1,31 @@
-# Rank-based split-half reliability versus trial budget (used from step 05 on).
-# Design constants (N_SPLITS = 200, N_BOOT = 2000, budget
-# grids) are pre-declared and fixed.
-#
-# Scheme:
-# - Within each subject, clean problems are randomly partitioned into two
-#   halves (problems whole: all sampled trials of a problem stay in one half).
-#   Subjects with more than 2k problems are freshly subsampled to 2k each split.
-# - Constructs are estimated per half; reliability at a budget point for a
-#   construct = Spearman across subjects between half-1 and half-2 estimates,
-#   computed per split on complete pairs, averaged over N_SPLITS splits.
-# - Trial positions: within a split, one common random subset of r positions
-#   from the regime's pool (experience 6-25 or description 1-5) is used for
-#   all subjects and problems (a fresh draw each split; positions are ~
-#   exchangeable within regime per the stability check in step 04).
-# - Bootstrap OUTSIDE, splits INSIDE: each of N_BOOT subject resamples
-#   recomputes every per-split Spearman on the resampled subjects and then
-#   averages over splits; percentile CI over the N_BOOT averages.
-# - Spearman-Brown 2r/(1+r) is reported alongside raw half-half reliability,
-#   labeled as an approximation when applied to rank correlations.
-#
-# Identification note (structural, stated in advance): the model-based
-# constructs (b_ev, b_risk, b_loss) come from a 4-parameter Firth fit, so a
-# half with k < 4 problems has a rank-deficient design (only k distinct
-# feature rows). Those fits return NA and the affected grid points are
-# reported as unidentified rather than as reliabilities.
+# Split-half reliability by rank, for each trial budget (from step 05 onwards).
+# The following design constants are pre-set and constant across runs:
+# N_SPLITS = 200
+# N_BOOT = 2000
+# budget grids
+# Clean problems within each subject are randomly divided into two halves (problems
+# whole: all trials of a given problem are in the same half)
+# Subjects with more than 2k problems are randomly subsampled to 2k total per split,
+# then divided into two halves of k
+# Constructs are estimated for each half.
+# Reliability of a construct at a given budget = Spearman correlation across subjects
+# between estimates from half-1 and half-2, calculated for full pairs across each
+# split and averaged across N_SPLITS splits.
+# Trials are assigned by position. Each subject and each problem uses the same random
+# subset of r positions from the regime set of positions (description positions: 1-5;
+# experience positions: 6-25). For each split a new random subset is drawn and the
+# positions are approximately exchangeable within each regime (checked in step 04 for
+# stability).
+# Splits inside, Bootstrap outside: for each of N_BOOT subject resamples, Spearman
+# correlations for each split are computed using the resampled subjects and averaged
+# across splits. A percentile CI is calculated from the N_BOOT averaged values.
+# Raw half-half reliability and Spearman-Brown 2r/(1+r) is also reported. If
+# Spearman-Brown is used with rank correlations it is presented as an approximation.
+# Note on identification (structural, pre-specified): the model-derived constructs
+# (b_ev, b_risk, b_loss) are estimated using a 4-parameter Firth method. If a half has
+# less than 4 problems then the design for that half is rank deficient since there are
+# only k distinct feature rows. The fit for these cases yields NA and these points are
+# marked as unidentified rather than reliability.
 
 step2_constructs <- c("b_ev", "b_risk", "b_loss", "ev_sens_agn", "loss_avoid_adj")
 
