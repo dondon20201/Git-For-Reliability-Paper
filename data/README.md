@@ -1,12 +1,6 @@
 # Data
 
-The raw data are not part of this repository. Put them in `data/raw/` with the
-file names below. Steps 01, 09 and 12 download their datasets automatically if
-the files are missing and stop if a checksum does not match. Most later steps
-check the md5 of the CPC18 file again before reading it. The Frey et al. data
-must be downloaded by hand; step 27 records the md5 of every Frey file it reads
-in `output/elevation/results/p3_frey/provenance_manifest.csv`, so compare those
-with the table below.
+The raw data are not stored in this repository. Store them in the data/raw/ directory using the following filenames. Steps 01, 09 and 12 will automatically download the data for those steps if the files are missing, and will fail if a checksum does not match. For most later steps, the md5 of CPC18 is checked again prior to reading. The Frey et al. data need to be downloaded manually. Step 27 stores the md5 of all Frey files it reads in the file provenance_manifest.csv in the directory output/elevation/results/p3_frey/. Check these against the table below.
 
 ## 1. CPC18 estimation data (main dataset, steps 01-39)
 
