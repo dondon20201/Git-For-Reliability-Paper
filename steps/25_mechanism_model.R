@@ -4,20 +4,20 @@
 # Paper:   Study 2 (The information mechanism)
 # Runtime: about 4 minutes, single process
 
-# E4: H2 gate for predicting each problem set's split-half reliability from
-# pre-declared set-level features.
-#
-# Inputs are the E2 problem-information dictionary, E3's real within-form and
-# simulated free-composition reliability tables, and E3's split-noise diagnostic.
-# All inputs are set-level, build-only outputs. No raw data, participant
-# choices, or participant split file is loaded, so the 137 freeze and 205 test
-# subjects cannot contribute. Reliabilities are not recomputed and no choice
-# model is fitted.
-#
-# The primary gate uses the pre-declared low-dimensional linear model. Ridge
-# and PLS are robustness checks only. This step does not optimize or construct
-# candidate designs. The sim_free105 and sim_anchor_set1 tracks use E3's
-# simulated reliabilities and are labeled SIMULATION in every output.
+# E4: H2 gate that will predict the split-half reliability for each problem set
+# using pre-declared set level features.
+# Uses: E2 dictionary of problem information, E3 actual within-form reliability
+# table and simulated free composition reliability tables, and the split-noise
+# analysis from E3.
+# All inputs are set level outputs only from the build phase. No individual
+# responses, no participant split file, and no raw data are loaded. Thus,
+# there is no way for the 137 freeze or 205 test participants to be used in
+# this gate. No choice model is fit and no reliabilities are rematerialized.
+# The main analysis uses the pre-declared low-dimensional linear model.
+# Ridge and PLS are used as robustness analyses. Candidate designs are not
+# generated or optimized in this gate. sim_anchor_set1 and sim_free105
+# tracks use the simulated reliabilities from E3 and all output from these
+# tracks will be marked as SIMULATION.
 
 suppressPackageStartupMessages({
   library(tidyverse)
