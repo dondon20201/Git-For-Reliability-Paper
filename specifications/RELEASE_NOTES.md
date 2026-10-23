@@ -27,5 +27,4 @@ this repository that carries it out. At integration, historical freeze tag label
 were replaced with references to the same freeze points or commit IDs in five
 places. The reported analysis sequence and thresholds were not changed.
 
-The opening descriptions in `E1_contract.md`, `E2_spec.md`, `E3_spec.md`, and `E3b_spec.md`
-were reworded after integration on 2026-10-23. Their analysis rules were unchanged.
+On 2026-10-23, the introductory comments to the specification files, INTEGRITY.md, and TERMINOLOGY_ERRATUM.md were updated for improved readability. No decision rule, seed, sample definition, threshold, gate, estimand, or hypothesis was changed.
