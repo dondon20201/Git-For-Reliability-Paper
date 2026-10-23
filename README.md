@@ -1,26 +1,15 @@
 # Git For Reliability Paper
 
-Replication code for the paper "How Many Problems Are Enough, and Which? A
-Reliability Ceiling for Individual-Difference Measures of Risky Choice".
-
-The numbered R scripts in `steps/` run in order and write results to `output/`.
-`check.R` compares the selected result files stored in `expected/` with the
-corresponding outputs.
+Code used to replicate the results in the paper "How Many Problems Are Enough, and Which? A Reliability Ceiling for Individual-Difference Measures of Risky Choice".
+The R scripts in steps/ are executed sequentially and output results to output/. The script check.R then compares the files containing the expected results from expected/ to the actual output files produced.
 
 ## What you need
 
-- R 4.6.1 and the package versions recorded in `renv.lock` (installed with
-  renv 1.2.3, see below).
-- A machine with at least 12 cores. Most long steps start 12 worker processes,
-  and step 34 starts 14.
-- About 200 MB of disk space for the raw data (135 MB) and the output, plus the
-  R package library.
-- The raw data in `data/raw/`. See [data/README.md](data/README.md) for where to
-  download each dataset, the file names and their md5 checksums. Steps 01, 09
-  and 12 download their datasets automatically; the Frey et al. (2017) data
-  must be downloaded by hand.
-- A git clone of this repository (not a zip download): step 27 checks with
-  git that the raw data folder is ignored.
+- R 4.6.1 and the package versions stored in renv.lock (from renv 1.2.3, as described below)
+- A 12-core minimum machine. Steps involving long computations initiate 12 worker processes initially, and step 34 initiates 14.
+- Approximately 200 MB of disk space for raw data (135 MB) and outputs as well as additional space for R package libraries.
+- The raw data in data/raw/. Information on download links, file names, and md5 checksums for each dataset is in data/README.md. Datasets used in steps 01, 09 and 12 are automatically downloaded. The data from Frey et al. (2017) must be downloaded manually.
+- A git clone of this repository (not a zip file): step 27 uses git to verify that the raw data directory is ignored.
 
 ## How to run
 
@@ -37,22 +26,13 @@ then, in a terminal:
 Rscript run_all.R
 ```
 
-`run_all.R` runs each step in a fresh R process and stops at the first failure.
-It writes console output to `output/logs/` and runs `check.R` when the selected
-range ends at step 39. To split a run, use `Rscript run_all.R 1 23` followed by
-`Rscript run_all.R 24 39`.
+run_all.R runs each step in a new R process, stopping at the first failed step. Console output is saved in output/logs/. If the final step number is 39, then check.R will be run. To run half of a series then continue later, do Rscript run_all.R 1 23 then Rscript run_all.R 24 39.
 
-On Windows without Rtools, `renv::restore()` may fail to build `xfun` 0.59 from
-source. In that case run `renv::install("xfun")` and then `renv::restore()`
-again; xfun is only used by knitr to print tables.
+If you are on Windows and do not have Rtools installed, you may encounter problems with renv::restore() trying to install xfun 0.59 from source. If this happens, do renv::install("xfun") then renv::restore(). xfun is only used by knitr for table output.
 
 ## Runtime
 
-About 21 hours on 12 cores when nothing else is running (a full run on a busy
-machine took 33 hours). The long steps are 29 (about 7.3 hours), 24 (about 6
-hours), 30 (about 2 hours), 28 (about 75 minutes), 38 and 31 (about 50 minutes
-each), and 05, 22, 34, 15, 16, 11, 07 and 06 (13 to 30 minutes each). All other
-steps take a few seconds to a few minutes. Each step's header gives its runtime.
+Roughly 21 hours on 12 cores in idle conditions (33 hours with a busy system). The long execution times are 29 (~7.3 hours), 24 (~6 hours), 30 (~2 hours), 28 (~75 minutes), 38 and 31 (~50 minutes each), and finally 05, 22, 34, 15, 16, 11, 07 and 06 (13-30 minutes each). Everything else is a few seconds to a few minutes. The time for each step is indicated in the header for that step.
 
 ## How to check
 
@@ -60,14 +40,7 @@ steps take a few seconds to a few minutes. Each step's header gives its runtime.
 Rscript check.R
 ```
 
-compares the CSV and JSON files in `expected/` with the files of the same name
-in `output/`. Numeric values must agree within `1e-10 * max(1, abs(expected))`;
-infinite values and NaN must match exactly. Numeric values cannot become
-missing, missing values cannot become numeric, and TRUE/FALSE flags must
-match. CSV column names and row counts must also match. Other text and image
-files are not checked. The script prints one line per file and exits with an
-error if a checked value differs or an output file is missing. `expected/`
-contains the reference files from the original analysis.
+The script Rscript check.R compares the CSV and JSON files in expected/ with the corresponding files in output/. For numeric data, the values must be equal within 1e-10 * max(1, abs(expected)). NaN and infinite values must be equal. Missing values must not turn into numeric, numeric must not turn into missing, and TRUE/FALSE must remain the same. The number of rows and the column names in the CSV files must also be equal. It skips PNG images and does not compare text in CSV or JSON files. One line is printed per file that is tested, and if a test value is found to be different or if one of the output files is missing an error is returned. The files in expected/ are the results from the original analysis.
 
 Paths written inside output files and log messages (for example
 `results/step2/reliability_by_cell_construct.csv`) are relative to `output/`.
