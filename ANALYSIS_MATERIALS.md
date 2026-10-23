@@ -1,6 +1,6 @@
 # Analysis materials
 
-The analysis code and reference results for "How Many Problems Are Enough, and Which? A Reliability Ceiling for Individual-Difference Measures of Risky Choice" are in this repository. These folders hold the related documentation and checks:
+Code for analysis and expected output from the paper, "How Many Problems Are Enough, and Which? A Reliability Ceiling for Individual-Difference Measures of Risky Choice" can be found in this repository. The folders contain the checks and associated materials:
 
 | Folder | Contents |
 |---|---|
@@ -31,7 +31,7 @@ Steps 36 and 37 assemble summary values and the hypothesis table. See `specifica
 
 ## Provenance
 
-The timeline in `provenance/provenance.md` reports dates from an earlier development history. The specifications were added to this repository later. Its Git history does not by itself establish the reported order of specifications and results. The specifications also retain references to the earlier file layout. In particular, manuscript source and render checks mentioned in the integrity rules are not included here.
+The provenance file, `provenance/provenance.md`, lists dates from prior development. The specifications were added to the repository at a later time. The Git history of this repository therefore cannot verify the order of specifications and results listed in the provenance file. The specifications also contain references to the prior directory structure. For example, the source and render checks on the manuscript referenced in the integrity checks are not present in this repository.
 
 ## Figures
 
@@ -41,7 +41,7 @@ From the repository root, with Python 3, pandas, numpy, and matplotlib installed
 python figures/make_figures.py expected figures
 ```
 
-The script reads the committed results and writes `fig1_reliability.pdf`, `fig2_projection.pdf`, and `fig3_prior_studies.pdf`. Use `output` in place of `expected` to draw them from the results of a full run. The committed PDFs are included for comparison.
+The script uses the saved expected output and produces the figures `fig1_reliability.pdf`, `fig2_projection.pdf`, and `fig3_prior_studies.pdf`. To use the output from a complete run of the code rather than the saved expected output, replace `expected` with `output`. The saved PDFs are provided for reference.
 
 ## Number check
 
@@ -51,6 +51,6 @@ The LaTeX manuscript sources are not included. If you have `main.tex` or `supple
 python number_check/check_paper_numbers.py main.tex expected data
 ```
 
-The script checks whether each printed number can match a value in a CSV or JSON file at the printed precision. It skips years and listed conventional values. A match does not establish that the number came from the correct row or analysis; use `manifest/analysis_manifest.csv` and the claim-status table for those links. Without the manuscript source, this check cannot be repeated from this repository alone.
+The script will attempt to find a value in a JSON or CSV file that matches the printed value to the precision printed. It does not compare minus signs. Years and conventional values listed are ignored. Finding a match in a file does not imply that the value was produced in a specific analysis or row. Please see the analysis manifest in `manifest/analysis_manifest.csv` and the table of claims and their statuses for such information. This check cannot be reproduced using only this repository because the manuscript source is not available.
 
 The code is covered by the repository's MIT license.
