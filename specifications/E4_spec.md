@@ -1,8 +1,6 @@
 # E4 mechanism model - specification (Study 2 core). The H2 gate.
 
-Specification written and committed before any result it governs exists. Governed by the integrity rules in INTEGRITY.md and by the frozen pre-specification in elevation/E1_contract.md. E4 tests H2: do the pre-declared information features predict held-out reliability
-BEYOND raw count and broad problem category, under grouped cross-validation? If they do not, the
-mechanism claim is unsupported and Study 2's mechanism is reported as exploratory (a valid outcome).
+A pre-specification was made before any result it might influence. Integrity is documented in INTEGRITY.md. The pre-specification for E4 H2 is locked in the file elevation/E1_contract.md. For E4 H2 I investigate if the features of previously declared information generalise to out-of-sample reliability. Do the features generalise under grouped cross validation beyond just raw count and problem type? If not then there is not support for the mechanism claim and Study 2's mechanism is labelled exploratory (which is also acceptable).
 
 ## 0. What E4 is (and is NOT)
 - E4 fits a LOW-DIMENSIONAL, PRE-DECLARED linear model that predicts a problem set's reliability from
