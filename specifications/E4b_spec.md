@@ -3,12 +3,7 @@
 Specification written and committed before any result it governs exists. Governed by the integrity rules in INTEGRITY.md and by the frozen pre-specification in elevation/E1_contract.md.
 
 ## 0. Status and purpose (READ FIRST)
-- EXPLORATORY. The frozen H2 gate result (E4 = FAIL) STANDS and is the confirmatory
-  record. E4b does NOT re-run, re-score, or replace the frozen H2 gate, and its verdict is labeled
-  EXPLORATORY everywhere. E4b answers one question the E4 review raised: was the frozen H2 failure driven
-  by two removable artifacts - outcome noise and the F2/F4 collinearity - or is the mechanism genuinely
-  absent? The answer feeds the Study-3 decision (fitted-model E5 vs reframe), which is the author’s to make after
-  this review.
+- EXPLORATORY. The confirmatory record for E4 comes from the previously locked H2 result that caused E4 to become FAIL. E4b does not replay, replace or rescore the previously locked H2 result. Instead, every decision in E4b will be labelled EXPLORATORY. E4b seeks to answer a question that arose in the review of E4: is the mechanism genuinely absent, or is the failure caused by the presence of two removable artifacts (F2/F4 collinearity and outcome noise)? This is then used in the decision for Study-3 (reframe versus fitted-model E5) which is made by the researcher during the review. No designs are created and no test or freeze subjects are read.
 - BUILD-ONLY, modeling only. E4b reads COMMITTED outputs (E3b denoised reliabilities + E2 features + E3
   set lists); it reads NO raw data, NO participant choices, recomputes NO reliability. Test sealed.
 - E4b does NO optimization and constructs NO candidate designs (E5).
