@@ -1,9 +1,6 @@
 # P2_spec.md erratum (post-hoc; P2 review, 2026-07-20)
 
-This note records defects in the P2 pre-specification (elevation/P2_spec.md, committed dc637a2) that were
-discovered WHILE running P2, during the run, and confirmed in independent review. Per pre-specification
-integrity, the committed spec is NOT rewritten; this erratum documents the defects and how they were handled.
-None changes the P2 verdict (the frozen H2 FAIL stands and is strengthened; the mechanism is not recovered).
+This note details problems observed in the P2 pre-specification (elevation/P2_spec.md, dc637a2) during running P2 and during the run as well as problems that have been independently verified. Integrity of the pre-specification requires that the checked in pre-spec be not edited. This note details problems that were observed and the actions that were taken. There is no impact on the outcome of P2 (the locked H2 FAIL remains and is enhanced; no mechanism is recovered).
 
 ## 1. The spec's EV control `gamma` is not separately identifiable
 Section 2 specifies logit(p_ij) = beta0_j + lambda_j * u_i + gamma * d_ev_noloss_ij with FREE per-item easiness
