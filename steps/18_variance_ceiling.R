@@ -5,29 +5,34 @@
 # Paper:   Methods (Locating the ceiling: variance components); Study 2 (Locating the ceiling)
 # Runtime: about 1 minute with 12 parallel workers
 
-# E0 Part B: per-construct true between-person variance ceiling, on the
-# md5-verified CPC18 data. Method-of-moments variance decomposition.
-#
+# E0 Part B: ceiling on per-construct true between-person variance,
+# using md5-checked CPC18 data, via method-of-moments variance
+# decomposition.
 # For each of the 5 constructs {ev_sens_agn, loss_avoid_adj,
-# b_ev, b_risk, b_loss}, on clean trials in the experience regime (Trial 6-25,
-# r = 20; the primary regime):
-#   B.1  per-subject full-data point estimate (estimate_half) + sampling
-#        variance from a within-subject nonparametric bootstrap over the
-#        subject's clean problems (resample problems w/ replacement, recompute).
-#   B.2  sigma2_obs = between-subject var of points; sigma2_err = mean within-
-#        subject sampling var; sigma2_true = max(0, sigma2_obs - sigma2_err);
-#        ceiling = sigma2_true/sigma2_obs. Reliability-at-k model (1/k error):
-#        rel(k) = sigma2_true / (sigma2_true + sigma2_err * (k_ref/k)),
-#        k_ref = median clean problems/subject; k for rel = .7 and .8.
-#   B.3  subject-cluster bootstrap CIs (resample subjects w/ replacement) on
-#        sigma2_true, ceiling, k_.7, k_.8; optimization-target flag per construct
-#        (sigma2_true CI EXCLUDES 0).
-#
-# The construct estimator is estimate_half() from R/step2_reliability.R, the
-# same estimator as the main reliability analysis. This file also EXPORTS its
-# decomposition helpers (sourced by step 19) so the recovery gate runs the
-# identical B.1-B.2 code on simulated data. Set E0_LIB_ONLY <- TRUE before
-# sourcing to load helpers without running the real-data pipeline.
+# b_ev, b_risk, b_loss}, in the experience regime (Trials 6-25,
+# r = 20), on clean trials:
+# B.1 per-subject estimate using all data (estimate_half) plus within-
+# subject sampling variance from a nonparametric bootstrap over the
+# clean problems experienced by the subject (resample problems with
+# replacement, recompute)
+# B.2 sigma2_obs = between-person variance of points; sigma2_err =
+# average within-person sampling variance; sigma2_true = max(0,
+# sigma2_obs - sigma2_err); ceiling = sigma2_true/sigma2_obs.
+# Reliability-at-k model (1/k error): rel(k) = sigma2_true / (sigma2_true +
+# sigma2_err * (k_ref/k)), where k_ref is the median number of clean
+# problems experienced by the subject and .7 and .8 are target reliability levels for
+# which k_0.7 and k_0.8 are estimated problem counts.
+# B.3 Subject-cluster bootstrap CIs on sigma2_true, ceiling, k_0.7,
+# k_0.8. For each construct, there is a flag indicating whether or not
+# to optimize for a construct with a CI on sigma2_true that does not
+# include 0.
+# The estimator for the constructs is the same as for the main
+# reliability analysis: it is estimate_half() from R/step2_reliability.R.
+# The decomposition functions used are also exported from this file.
+# These functions are loaded in by step 19 and are used by the recovery
+# gate to run the same B.1-B.2 analysis on generated data. By
+# predefining E0_LIB_ONLY to be TRUE before the file is sourced, the
+# actual data analysis code can be avoided.
 
 suppressPackageStartupMessages({
   library(tidyverse)
