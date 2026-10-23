@@ -1,15 +1,15 @@
 # Git For Reliability Paper
 
 Code used to replicate the results in the paper "How Many Problems Are Enough, and Which? A Reliability Ceiling for Individual-Difference Measures of Risky Choice".
-The R scripts in steps/ are executed sequentially and output results to output/. The script check.R then compares the files containing the expected results from expected/ to the actual output files produced.
+The R scripts in `steps/` are executed sequentially and output results to `output/`. The script `check.R` then compares the files containing the expected results from `expected/` to the actual output files produced.
 
 ## What you need
 
-- R 4.6.1 and the package versions stored in renv.lock (from renv 1.2.3, as described below)
-- A 12-core minimum machine. Steps involving long computations initiate 12 worker processes initially, and step 34 initiates 14.
+- R 4.6.1 and the package versions stored in `renv.lock` (from renv 1.2.3, as described below)
+- A machine with 12 or more cores is recommended. Most long steps start 12 worker processes and step 34 starts 14; with fewer cores the steps still run, but take longer. Results do not depend on the number of cores, because every parallel task sets its own random seed.
 - Approximately 200 MB of disk space for raw data (135 MB) and outputs as well as additional space for R package libraries.
-- The raw data in data/raw/. Information on download links, file names, and md5 checksums for each dataset is in data/README.md. Datasets used in steps 01, 09 and 12 are automatically downloaded. The data from Frey et al. (2017) must be downloaded manually.
-- A git clone of this repository (not a zip file): step 27 uses git to verify that the raw data directory is ignored.
+- The raw data in `data/raw/`. Information on download links, file names, and md5 checksums for each dataset is in `data/README.md`. Datasets used in steps 01, 09 and 12 are automatically downloaded. The data from Frey et al. (2017) must be downloaded manually.
+- A `git clone` of this repository (not a zip file): step 27 uses `git` to verify that the raw data directory is ignored.
 
 ## How to run
 
@@ -26,9 +26,9 @@ then, in a terminal:
 Rscript run_all.R
 ```
 
-run_all.R runs each step in a new R process, stopping at the first failed step. Console output is saved in output/logs/. If the final step number is 39, then check.R will be run. To run half of a series then continue later, do Rscript run_all.R 1 23 then Rscript run_all.R 24 39.
+`run_all.R` runs each step in a new R process, stopping at the first failed step. Console output is saved in `output/logs/`. If the final step number is 39, then `check.R` will be run. To run half of a series then continue later, do `Rscript run_all.R 1 23` then `Rscript run_all.R 24 39`.
 
-If you are on Windows and do not have Rtools installed, you may encounter problems with renv::restore() trying to install xfun 0.59 from source. If this happens, do renv::install("xfun") then renv::restore(). xfun is only used by knitr for table output.
+If you are on Windows and do not have Rtools installed, you may encounter problems with `renv::restore()` trying to install xfun 0.59 from source. If this happens, do `renv::install("xfun")` then `renv::restore()`. xfun is only used by knitr for table output.
 
 ## Runtime
 
@@ -40,7 +40,7 @@ Roughly 21 hours on 12 cores in idle conditions (33 hours with a busy system). T
 Rscript check.R
 ```
 
-The script Rscript check.R compares the CSV and JSON files in expected/ with the corresponding files in output/. For numeric data, the values must be equal within 1e-10 * max(1, abs(expected)). NaN and infinite values must be equal. Missing values must not turn into numeric, numeric must not turn into missing, and TRUE/FALSE must remain the same. The number of rows and the column names in the CSV files must also be equal. It skips PNG images and does not compare text in CSV or JSON files. One line is printed per file that is tested, and if a test value is found to be different or if one of the output files is missing an error is returned. The files in expected/ are the results from the original analysis.
+`check.R` compares the CSV and JSON files in `expected/` with the corresponding files in `output/`. For numeric data, the values must be equal within 1e-10 * max(1, abs(expected)). NaN and infinite values must be equal. Missing values must not turn into numeric, numeric must not turn into missing, and TRUE/FALSE must remain the same. The number of rows and the column names in the CSV files must also be equal. It skips PNG images and does not compare text in CSV or JSON files. One line is printed per file that is tested, and if a test value is found to be different or if one of the output files is missing an error is returned. The files in `expected/` are the results from the original analysis.
 
 Paths written inside output files and log messages (for example
 `results/step2/reliability_by_cell_construct.csv`) are relative to `output/`.
@@ -61,7 +61,7 @@ Paths written inside output files and log messages (for example
 | 10 | `10_expanded_pool_recovery.R` | Expanded problem pool and recovery on it (simulation) | Methods; Results |
 | 11 | `11_expanded_pool_reliability.R` | Split-half reliability curves, expanded problem pool | Results; Figure 1 |
 | 12 | `12_choices13k_checks.R` | Aggregate agreement with choices13k | Results |
-| 13 | `13_reconciliation_figure.R` | Figure 1 and its data | Results; Figure 1 |
+| 13 | `13_reconciliation_figure.R` | Data for Figure 1 and a draft plot (the published figure is drawn by `figures/make_figures.py`) | Results; Figure 1 |
 | 14 | `14_summary_tables.R` | Trials-needed table and claim-status table | Results; Appendix; Supplement |
 | 15 | `15_aggregation_sensitivity.R` | Sensitivity to the aggregation estimator | Supplement |
 | 16 | `16_fixed_cohort_reliability.R` | Reliability on a fixed participant cohort | Supplement |
@@ -94,9 +94,7 @@ true-score variance, not estimation". Each script starts with a short header
 listing what it reads and writes. Recovery and calibration results are labeled
 as simulations; those scripts also read the empirical problem features used
 to define the simulated designs. Step 19 combines the recovery verdicts with
-the empirical ceiling estimates from step 18. The paper's other two figures
-plot values produced by steps 08, 13, 18 and 19. The figure script and PDFs
-are in `figures/`.
+the empirical ceiling estimates from step 18. The published Figures 1 to 3 are drawn by `figures/make_figures.py` from values produced by steps 05, 08, 11, 18 and 19.
 
 ## Additional analysis materials
 
