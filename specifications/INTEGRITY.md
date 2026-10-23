@@ -1,15 +1,18 @@
 # Integrity rules
 
-These are the standing methodological commitments of this project. They were written
-before the analysis began, committed to the repository ahead of the results they govern,
-and were not relaxed at any point afterwards. The pre-specification documents in
-`elevation/` cite this file, and the claim-status appendix of the manuscript is the
-audit trail showing where each rule was applied.
+These are the current methodological commitments of this project. These
+commitments predate the analysis and were committed to the development repository
+before the results they describe. These commitments were not
+relaxed at any point during the project.
 
-They are recorded here for two reasons. A reader deciding how much weight to place on a
-result is entitled to know what standard the result was held to. And a rule that is
-written down before the data are seen is a constraint; a rule described afterwards is
-only a description.
+This file is referenced by the pre-specification files in the `elevation/`
+folder. The application of each rule is tracked in the appendix to the manuscript
+that details the status of each claim.
+
+These commitments are documented for two reasons. A user who must assign a level
+of trust to a result should be able to learn the standard to which a result
+was held. Additionally, a rule specified prior to data observation is a
+constraint. A rule specified after data observation is only a description.
 
 ## 1. All data are real and verified
 
@@ -94,13 +97,14 @@ rather than borderline.
 
 ## 7. Results are generated and graded separately
 
-The failure this project is most concerned with is the one where the same process
-produces a result, checks it, and passes it, so that errors flattering to the hypothesis
-survive. Analysis and verification were therefore kept apart: key quantities were
-independently re-derived, from the same raw data but in different code, by a party that
-had not seen the original implementation, and the two were reconciled before any result
-was accepted. Deterministic quantities were required to match exactly; stochastic ones
-were required to agree at the expectation level.
+The type of error this project is primarily concerned with is the type in which
+an identical process generates a result, validates that result, and accepts it,
+thus allowing errors that are flattering to the hypothesis to persist. As a result,
+analysis and validation were separated. Important measures were independently
+re-derived using the same original data but in different code and by an entity
+that had not seen the original code. These derivations were then reconciled
+prior to the acceptance of any result. Deterministic measures were required to
+be identical while stochastic measures were required to match in expectation.
 
 Alongside that, results were actively attacked rather than confirmed: re-run under
 different splits and seeds, checked for recovery of known values, and examined for what a

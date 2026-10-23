@@ -1,9 +1,11 @@
 # E3 same-count subset benchmark - specification (Study 2). The H1 premise gate.
 
-Specification written and committed before any result it governs exists. Governed by the integrity rules in INTEGRITY.md and by the frozen pre-specification in elevation/E1_contract.md. E3 is the premise gate for H1: at a fixed number of
-unique clean problems K, does held-out reliability vary materially across item sets? If item-set
-variance is trivial, H3 and H4 are moot and the program stops at exploratory (INTEGRITY.md: a failed
-premise is a valid outcome, honestly reported).
+This specification was written and checked in before any output it controls existed. It follows
+the integrity rules found in INTEGRITY.md and the frozen pre-specification found in
+elevation/E1_contract.md. E3 is the premise gate for H1. For a fixed number of unique clean
+problems K, does held-out reliability vary materially across item sets? If there is little
+difference across item sets, then H3 and H4 are not relevant and execution terminates in
+exploratory mode (INTEGRITY.md: a failed premise is a valid output which is reported honestly).
 
 ## 0. What E3 is (and is NOT)
 - E3 quantifies reliability heterogeneity across equal-K item sets, and reports recovery and

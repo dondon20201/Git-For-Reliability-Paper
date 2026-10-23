@@ -1,6 +1,6 @@
 # Studies 2-3 pre-specification contract (E1)
 
-FROZEN before any optimization output exists (git commit = timestamp). Binding on all Study 2-3 analyses E2-E12. Governed by INTEGRITY.md, the execution plan (the full plan), and the claim-control rules in INTEGRITY.md. Nothing here may be changed once committed except by a NEW, explicitly labeled exploratory addendum; the primary analysis defined here cannot be silently replaced (INTEGRITY.md).
+FROZEN before any optimization output. (git commit = timestamp) Binds to all analyses in Study 2-3 for E2-E12. Governed by INTEGRITY.md, the complete execution plan, and the claim-control rules in INTEGRITY.md. Nothing in this section can be changed after commit except by an explicitly designated exploratory addendum, NEW. The main analysis in this section cannot be silently replaced (INTEGRITY.md).
 
 ## 0. What E0 established (the inputs to this freeze)
 - CPC18 assignment is 7 fixed problem forms keyed on `Set` (largest = Set 1, 125 subjects x 24 clean problems); no clean problem is seen by >= 150 subjects, so there is NO common held-out fixed form. Study-3 validation path = SIMULATION-BACKED (primary), anchored by within-form real-data validation where a form is large enough (Set 1).

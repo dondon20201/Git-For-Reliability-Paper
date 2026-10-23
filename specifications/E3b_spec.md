@@ -3,15 +3,17 @@
 Specification written and committed before any result it governs exists. Governed by the integrity rules in INTEGRITY.md and by the frozen pre-specification in elevation/E1_contract.md.
 
 ## 0. Status and purpose (READ FIRST)
-- EXPLORATORY. The frozen pre-specification (E1) and the frozen H2 gate result (E4 = FAIL)
-  STAND and are the confirmatory record. Nothing here re-runs, re-scores, or replaces the frozen H2 gate.
-  This addendum exists only to DIAGNOSE why H2 failed, by removing two artifacts the E4 review identified:
-  (i) the per-set reliability OUTCOME that E4 modeled is noisy (subject-sampling error ~0.145 SB units at
-  Set 1 K=12, large relative to the across-set true SD ~0.19), which attenuates prediction and
-  destabilizes the partial coefficients whose signs the G-real clause tested; (ii) E4's real anchor shared
-  all 63 subjects across train and test sets. E3b produces a lower-noise and honestly-evaluable
-  reliability outcome for the EXPLORATORY re-test in E4b. It does NOT fit any mechanism
-  model (that is E4b) and does NO optimization.
+- - EXPLORATORY. The frozen pre-specification (E1) and the frozen result at the gate for H2 (E4
+  = FAIL) are the confirmatory record. Nothing in this section re-runs, re-scores, or replaces
+  the frozen result at the gate for H2. This addendum is intended for DIAGNOSING the failure of
+  H2 by removing two artifacts pointed out in the review at E4: (i) the per-set reliability
+  OUTCOME used in E4 is noisy (sampling error in subjects ~0.145 SB units at K=12 in Set 1,
+  which is relatively large compared to the across-set true SD ~0.19), which degrades
+  prediction and also destabilizes the partial coefficients whose signs were tested in the
+  G-real clause; and (ii) the shared real anchor in E4 puts all 63 subjects in both train and
+  test sets. E3b creates a lower-noise reliability result that can be evaluated honestly for
+  the EXPLORATORY re-test in E4b. E3b does NOT fit any mechanism model (E4b) and does NOT
+  undergo any optimization.
 - BUILD-ONLY. Part A uses only the 63 Set-1 BUILD subjects (E1 split); Part B uses the frozen build
   generative model. FREEZE (137) is not read (reserved for E6); TEST (205) is sealed (E7). Reading build
   choices for exploration is squarely within BUILD's purpose (E1 contract section 3).

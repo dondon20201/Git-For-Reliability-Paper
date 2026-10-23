@@ -1,9 +1,10 @@
 # E2 problem-information dictionary - field specification (Study 2)
 
-Specification written and committed before any result it governs exists. Governed by the integrity rules in INTEGRITY.md and by the frozen pre-specification in elevation/E1_contract.md.
-This is an analysis specification, not a new pre-specification: the Studies 2-3 contract was
-already frozen at E1. It documents the reusable Table-1 problem-information dictionary
-(execution spec, Table 1) whose fields feed H2's mechanism model at E4.
+This specification was written and checked in before any output it controls existed. It follows the integrity rules found in INTEGRITY.md and the frozen pre-specification found in elevation/E1_contract.md.
+This is not a new pre-specification but an analysis specification. The contract for Studies 2-3
+was already frozen at E1. This document describes the reusable problem information dictionary for
+Table 1 (execution spec, Table 1). The fields of this dictionary are used by the mechanism model
+in H2 at E4.
 
 ## 0. What E2 is (and is NOT)
 - E2 builds ONE item-level table: one row per clean problem in the CPC18 clean-problem

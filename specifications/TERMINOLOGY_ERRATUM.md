@@ -9,18 +9,19 @@ generated provenance record described this project's practice as *pre-registrati
 described individual specifications as *pre-registered*. That wording appeared 41 times
 across 22 files.
 
-It was not accurate. No specification in this project was ever registered with a public
-registry. What the project did was write each specification, each hypothesis, and each
-pass-or-fail threshold down and commit it to version control before computing the results
-it governed. That is pre-specification. It is a weaker guarantee than registration and it
-should not have borrowed registration's name.
+This is not correct. None of the specifications in this project were registered in a public
+registry. Rather, this project wrote the specifications, hypotheses, and pass/fail criteria,
+and checked them into version control before running the code that implemented them.
+This is pre-specification. This is weaker than registration and should not be given the name
+of registration.
 
-The distinction matters because the two claims rest on different foundations. A registry
-entry is timestamped by an independent third party and cannot be revised without leaving
-a record the registry controls. A commit is timestamped by the author's own machine, and
-version history can be rewritten. The commit record evidences ordering to a reader who is
-willing to accept this repository's push history as a witness. It does not evidence it to
-a reader who is not, and it is not equivalent to registration.
+The difference is that these two assertions are grounded in different things. A registration
+is timestamped by a third party that is independent of the researcher and has an immutable
+history in the registration. A commit is timestamped by the researcher’s own computer and
+has a history that can be rewritten. However, to a person who will accept the development
+repository’s push history as a witness, the commits provide evidence of their ordering.
+They do not provide ordering to a person who will not accept that push history. It is not
+the same as a registration.
 
 ## What was changed
 
