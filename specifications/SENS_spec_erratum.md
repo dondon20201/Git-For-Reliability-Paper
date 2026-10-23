@@ -1,12 +1,6 @@
 # Erratum to SENS_spec.md
 
-This erratum records three specification defects in the SENS pre-specification
-that caused the detection-curve deliverable to come back VOID by its own
-pre-declared G-controls clause (positive control detected with probability
-0.000 against a 0.80 bar). All three are choices I made at pre-specification,
-before any result existed. None was patched after the fact; the run was demoted
-to its pre-declared fallback, the attenuation bound, per the spec's own stopping
-rule. The frozen H2 FAIL is unchanged and un-upgraded by this analysis.
+This issue details three problems in the SENS pre-specification that caused the detection curve deliverable to return VOID due to a pre-defined G-controls condition (the positive control was detected with a probability of 0.000 rather than 0.80 at 0.80 bar). Each of these was a decision made during pre-specification before any results were produced. None of these were subsequently corrected. Instead the run was placed under its pre-defined backup (attenuation bound) in accordance with the stop condition defined in the pre-specification. This investigation does not impact the static H2 FAIL.
 
 ## Defect 1 - the beta grid was never calibrated in reliability (SB) units
 
