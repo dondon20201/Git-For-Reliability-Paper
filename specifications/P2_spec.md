@@ -4,15 +4,7 @@ Specification written and committed before any result it governs exists. Governe
 the third-act package (risk ordering P1/E8 done -> P3 done -> P2/IRT now). "P2" is the IRT path
 label from the third-act decision record; it runs THIRD by risk order, after P3.
 
-P2 asks whether a JOINT item-response / information model - estimating each problem's discrimination (how
-sharply it separates subjects on the trait) and each subject's latent risk trait TOGETHER, then linking item
-discrimination to the frozen E2 information features - can recover the Study-2 mechanism that the frozen
-two-stage H2 test (E4) could not detect. E4 estimated per-set reliability first and regressed it on features
-second; E3b showed that outcome was too noisy (out-of-subject reliability 0.28-0.48, partition-unstable
-0.25-0.83) to confirm or refute the mechanism, and E4's real anchor exceeded its own outcome ceiling
-(leakage). P2 removes the noisy intermediate outcome by putting the mechanism directly at the item level
-inside one joint model. It is BUILD-only, reads no freeze or test subject, and does not alter the frozen
-Study 1, the frozen H2 FAIL, or E8.
+P2 seeks to explore a JOINT item-response / information modeling strategy in which individual differences on the latent risk trait are estimated along with item discrimination (the ability of an item to discriminate between individuals on the latent risk trait) and then item discrimination is related to the previously frozen E2 values of information. The aim is to see if such a strategy can capture the mechanism proposed in Study-2 that was not captured by the previously frozen two-stage H2 test (E4). Unlike E4 that first estimated per-set reliability and then regressed on features, E3b found that this reliability measure was noisy (out-of-subject reliability = 0.28-0.48 and partition-unstable = 0.25-0.83) and therefore could not be used to either affirm or deny the mechanism. Additionally E4's real anchor exceeded its own outcome ceiling (leakage). P2 avoids the noisy per-set reliability measure by fitting the mechanism at the item level in a single JOINT model. This model is BUILD-only and does not read test or freeze subjects. Additionally the previously frozen Study 1, the previously frozen H2 FAIL or E8 remains unchanged.
 
 ## 0. What P2 is (and is NOT)
 - P2 fits a one-factor item-response model to the BUILD loss-avoidance choice data: each problem j gets a
