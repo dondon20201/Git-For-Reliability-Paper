@@ -3,7 +3,7 @@
 Specification written and committed before any result it governs exists. Governed by the integrity rules in INTEGRITY.md and by the frozen pre-specification in elevation/E1_contract.md.
 
 ## 0. Status and purpose (READ FIRST)
-- - EXPLORATORY. The frozen pre-specification (E1) and the frozen result at the gate for H2 (E4
+- EXPLORATORY. The frozen pre-specification (E1) and the frozen result at the gate for H2 (E4
   = FAIL) are the confirmatory record. Nothing in this section re-runs, re-scores, or replaces
   the frozen result at the gate for H2. This addendum is intended for DIAGNOSING the failure of
   H2 by removing two artifacts pointed out in the review at E4: (i) the per-set reliability
