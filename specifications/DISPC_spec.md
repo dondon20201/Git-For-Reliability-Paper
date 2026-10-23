@@ -3,13 +3,7 @@
 Specification written and committed before any result it governs exists. Governed by the integrity rules in INTEGRITY.md and by the frozen pre-specification in elevation/E1_contract.md. Companions: E3_spec.md (H1), DISPB_spec.md
 (stability/optimism/LOFO), E8_spec.md (robustness-analysis template).
 
-Battery C is the LAST optional Study-2 robustness arm (A = SENS, B = Battery B, C = Battery C). It runs three
-pre-declared diagnostics that RULE OUT (or confirm) alternative explanations for the E3 H1 equal-length heterogeneity:
-response-style contamination, local item dependence, and scoring-rule specificity. Each is interpretable whichever way
-it lands - a confound present NARROWS H1 honestly, a confound absent STRENGTHENS the construct reading against a
-reviewer objection. It re-analyses BUILD data only; it constructs no designs, opens no freeze, reads no test subject
-(205 sealed). It NEVER overwrites the frozen pre-specification: the E3 H1 PASS and the E4 H2 FAIL stand untouched. This
-spec is committed before results; its gates are not amended after results.
+C is the final optional robustness study in Study-2. A = SENS, B = Battery B, C = Battery C. Battery C tests for the influence of response style contamination, local item dependence and scoring rule effects on heterogeneity in equal-lengths between E3 H1 using three pre-specified analyses. These analyses are interpretable in both directions. If a confound is present then it will realistically narrow H1. If a confound is not present then it will support the interpretation of the construct in the face of an attempted criticism by a reviewer. Battery C does not create designs, open a freeze or read any test taker (205 sealed). It does not overwrite the pre-specification that was frozen. The E3 H1 PASS and the E4 H2 FAIL remain unchanged. This spec is made before the results it influences and the gates are not changed after results are available.
 
 ## 0. What Battery C is (and is NOT)
 - Three PRE-DECLARED diagnostics on the E3 equal-length sets at the primary cell (Set 1, K=12, loss_avoid_adj), each
