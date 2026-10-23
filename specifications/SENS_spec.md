@@ -1,6 +1,6 @@
 # SENS - mechanism sensitivity and detection curve (SPEC; committed BEFORE any result)
 
-Pre-specification for the sensitivity analysis of the Study 2 mechanism null (frozen H2 FAIL, E4). Purpose: calibrate WHICH feature-to-reliability mechanisms the E4 design could and could not have detected under the empirical set-level outcome noise (E3b) and the expected-information / loss-exposure collinearity (~0.90), so the null is stated as informative or as detectability-limited rather than left ambiguous. Build-only. The sealed 205 test group is NEVER read. This spec is committed before results exist; its gates are not amended after results.
+Spec for sensitivity analysis on null of Study 2 mechanism (frozen H2 FAIL, E4). Aimed at tuning HOW the reliability mechanisms would or would not have been detected by the E4 design given the expected-information / loss-exposure collinearity (~0.90) and the empirically observed set-level outcome noise (E3b) such that the null is either informative or limited by detectability and not ambiguous. Only build. The sealed 205 test group is NEVER read. This spec predates result availability and its gates are not revised after results are available.
 
 ## Scientific question
 Given a KNOWN, planted feature-to-reliability mechanism of graded strength, what is the probability the frozen E4 gate would detect it, under the empirical outcome noise, feature collinearity, and seven-form structure of CPC18 BUILD?
