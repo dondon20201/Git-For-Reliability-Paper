@@ -3,11 +3,7 @@
 Specification written and committed before any result it governs exists. Governed by the integrity rules in INTEGRITY.md. This is the P3 leg of the approved third-act package (P1/E8 done -> P3 now ->
 P2/IRT later).
 
-P3 asks whether Study 1's reliability wall - single risk-preference measures are unreliable while the
-aggregate trait is reliable - REPLICATES in an independent dataset (Frey et al. 2017, N=1507, plus a
-6-month retest), and whether E8's null (better estimation does not rescue reliability) holds there too. It
-touches NO CPC18 repo analysis, does NOT read the sealed 205 CPC18 test subjects, and does not modify the
-frozen Study 1 or Study 2.
+P3 seeks to test if the reliability wall observed in Study 1 (the overall trait is reliable whereas individual risk preference is not) replicates in an independently collected data set (Frey et al. 2017, N=1507 plus a 6-month retest). P3 also tests if the null observed in E8 (better estimation does not improve reliability) also replicates in this independently collected data set. P3 does not perform any analysis on any data from the CPC18 repo. P3 does NOT read the sealed 205 CPC18 test subjects. P3 does NOT manipulate either frozen Study 1 or Study 2.
 
 ## 0. What P3 is (and is NOT)
 - P3 is a re-analysis of the PUBLIC Basel-Berlin Risk Study data (OSF rce7g), a local copy of which the author
