@@ -4,33 +4,31 @@
 # Paper:   The reliability ceiling reflects true-score variance (Better estimation does not lower the ceiling); Abstract
 # Runtime: about 10 minutes with 12 parallel workers
 
-# E8: compare hierarchical partial pooling with the frozen per-subject
-# estimator on identical split draws. The primary target is loss_avoid_adj;
-# ev_sens_agn is secondary. A near-zero change in reliability is a pre-declared
-# outcome relevant to the true-variance ceiling interpretation.
-#
-# All estimates use the 344 build subjects from step 20. Choice/outcome columns
-# are dropped from the full-sample frame, excluding the 137 freeze and 205 test
-# subjects' choices. This step does not optimize candidate designs, fit a
-# mechanism model, or read freeze/test outcomes.
-#
-# The shared functions are sourced without redefinition:
-#   R/step2_reliability.R  build_subject_data, fit_loss_baselines,
-#                          estimate_half, split_correlations, sb_correct,
-#                          reliability_point
-#   R/step1_measures.R     index definitions, sourced for provenance
-#   R/cpc18_features.R     load_cpc18, is_clean_row, clean_problem_features,
-#                          add_scaled_features
-# Eligibility and partitions mirror run_cell's lambda = NA path draw for draw.
-# The raw arm calls estimate_half directly, without an accelerator. G_EQ
-# reproduces a committed sample of halves exactly before reliability is
-# computed. Both arms use split_correlations, sb_correct, and reliability_point
-# for scoring and intervals; the hierarchical arm changes only the per-half,
-# per-subject input vector.
-#
-# E8_SMOKE=1 reduces loop counts and writes to a scratch directory rather than
-# output/elevation/. Smoke-run numbers are not research results, and the
-# full-run constants are unchanged.
+# E8: Compare hierarchical partial pooling to frozen per-subject estimation on the
+# same split draws. The main interest is loss_avoid_adj; ev_sens_agn is of secondary
+# interest. The declared outcome relating to the discussion of the upper bound on true
+# variance is a small change in reliability.
+# The 344 build subjects from step 20 are used for all estimation. For the full sample
+# data, the choice and outcome columns are removed including the choices of the 137
+# freeze and 205 test subjects. Note that this does not attempt to optimize candidate
+# designs, fit a mechanism model, or read in freeze/test outcomes.
+# The following functions are loaded from their original files and used as is:
+# R/step2_reliability.R build_subject_data, fit_loss_baselines,
+# estimate_half, split_correlations, sb_correct,
+# reliability_point
+# R/step1_measures.R index definitions (used for provenance)
+# R/cpc18_features.R load_cpc18, is_clean_row, clean_problem_features,
+# add_scaled_features
+# Partitioning and eligibility are drawn in the same way as for run_cell with lambda =
+# NA in the draw.
+# The raw code calls estimate_half directly, without an accelerator. G_EQ re-derives
+# estimates for a committed sample of halves and checks that they match exactly before
+# reliability computation. Both code paths use split_correlations, sb_correct, and
+# reliability_point for interval and point estimation. The difference between the two
+# code paths is in the vector of per-subject/per-half values passed in.
+# When E8_SMOKE=1, fewer iterations are run and output is placed in a scratch folder
+# instead of output/elevation/. The smoke run numbers are not part of the research.
+# The constants for full runs are unchanged.
 
 suppressPackageStartupMessages({
   library(tidyverse)
