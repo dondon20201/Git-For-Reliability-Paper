@@ -2,12 +2,7 @@
 
 Specification written and committed before any result it governs exists. Governed by the integrity rules in INTEGRITY.md and by the frozen pre-specification in elevation/E1_contract.md.
 
-E8 asks a single, pre-specified question on the BUILD group only: does hierarchical (partial-pooling)
-re-estimation of the two trustworthy target indices raise their held-out split-half reliability relative
-to the frozen per-subject (no-pooling) estimator that Study 1 used? This attacks the REDUCIBLE
-measurement-noise component of the E0 reliability decomposition, never the population true-variance
-ceiling. It is a re-analysis of existing build data with a different estimator: it constructs no designs,
-fits no mechanism model, and reads no freeze or test subject.
+E8 tests one pre-specified question for the BUILD group. Specifically it tests if the split-half reliability of the two trustworthy target indices increases if the two trustworthy target indices are re-estimated using a hierarchical (partial-pooling) estimator versus the previously frozen per-subject (no-pooling) estimator used in Study 1. This question tests the REDUCIBLE component of measurement noise present in the E0 reliability analysis and not the population true-variance ceiling. This question is a re-analysis of previously collected build data using a different estimator. No designs are created. No mechanism model is fit. No test or freeze subjects are read.
 
 ## 0. What E8 is (and is NOT)
 - E8 re-estimates loss_avoid_adj (PRIMARY) and ev_sens_agn (SECONDARY) with a multilevel partial-pooling
