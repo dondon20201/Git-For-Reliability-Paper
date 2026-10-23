@@ -95,8 +95,13 @@ listing what it reads and writes. Recovery and calibration results are labeled
 as simulations; those scripts also read the empirical problem features used
 to define the simulated designs. Step 19 combines the recovery verdicts with
 the empirical ceiling estimates from step 18. The paper's other two figures
-plot values produced by steps 08, 13, 18 and 19; their plotting scripts are
-not included.
+plot values produced by steps 08, 13, 18 and 19. The figure script and PDFs
+are in `figures/`.
+
+## Additional analysis materials
+
+The specifications, provenance note, analysis manifest, figure files, and
+paper-number checker are described in [ANALYSIS_MATERIALS.md](ANALYSIS_MATERIALS.md).
 
 ## License
 

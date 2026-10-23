@@ -1,0 +1,31 @@
+item,where_in_paper,what_it_shows,produced_by,results_files,specification
+Figure 1,"Main paper, Results","Split-half reliability by distinct-problem count, both pools","steps/05, steps/11 (values); figures/make_figures.py (drawing)",results/step2/reliability_by_cell_construct.csv; results/step4/reliability_extended.csv,
+Figure 2,"Main paper, Study 2",Implied reliability R(k) against distinct-problem budget,"steps/18, steps/19 (values); figures/make_figures.py (drawing)",elevation/results/e0/variance_ceiling_final.csv; results/step2/reliability_by_cell_construct.csv; results/step4/reliability_extended.csv,
+Figure 3,"Main paper, Relation to prior findings",Prior studies on the problem-count axis,"steps/05, steps/08, steps/11 (values); figures/make_figures.py (drawing)",results/step2/reliability_by_cell_construct.csv; results/step4/reliability_extended.csv; data/prior_studies.csv,
+Table 1,"Main paper, Results",Problems needed to reach each reliability threshold,steps/14,results/step5/trials_needed_combined.csv,
+Table 2,Supplement A,Claim-status ledger,steps/14,results/step5/claim_status_skeleton.csv; data/claim_prose.csv,
+Table 3,Supplement C,Reliability under alternative aggregation estimators,steps/15,results/step2/aggregation_sensitivity.csv,
+Table 4,Supplement D,Reliability for a fixed participant cohort,steps/16,results/step2/fixed_cohort_reliability.csv,
+Table 5,Supplement E,Pooled and within-form reliability,steps/38,elevation/results/audit/b3_pooled_reproduction.csv; elevation/results/audit/b3_within_form_splithalf.csv,
+Table 6,Supplement L,Pre-specified hypotheses and robustness checks,steps/37,elevation/results/hypothesis_ledger.csv,all specifications
+Table 7,Supplement O,Estimand and claim map,Written from the specifications and Tables 1-6 (no new computation),,E1_contract.md
+Table 8,Supplement P,External replication classification,steps/27,elevation/results/p3_frey/dfd_dfe_reliability.csv; elevation/results/p3_frey/modelpar_reliability.csv; elevation/results/p3_frey/reliability_by_tradition.csv,P3_spec.md
+Sample and data checks,"Main paper, Methods (Data)","686 participants, 510,750 choices, problems per participant",steps/01,results/step0/structure_checks.csv; results/step0/trials_per_subject_summary.csv; results/step0/problems_per_subject_distribution.csv,
+Validation gates,"Main paper, Methods; Supplement B",Parameter recovery (simulation),"steps/01, steps/02, steps/10",results/step0/recovery_verdict.csv; results/step4/expanded_recovery_verdict.csv,
+Construct correlation,"Main paper, Methods (Constructs)",Loss avoidance and EV sensitivity correlation,steps/39,elevation/results/audit/construct_correlation.csv,
+Problem pools,"Main paper, Methods (Problem pools)","Strict and expanded pools, reconstruction check","steps/09, steps/10",results/step4/expanded_pool_summary.csv; results/step4/realized_grid.csv,
+Repetitions and fixed pool,"Main paper, Results",Repeats and fixed-pool check,"steps/05, steps/07",results/step2/reliability_by_cell_construct.csv; results/step2/fixed_pool_check.csv,
+Cross-half agreement,"Main paper, Results; Supplement F",Same-trial versus cross-half convergence,"steps/04, steps/06",results/step1/agreement_bar_verdict.csv; results/step1_addendum/cross_half_agreement.csv; results/step1_addendum/ceiling_check.csv,
+choices13k,"Main paper, Results; Supplement G",Aggregate agreement only,steps/12,results/step4/choices13k_aggregate_checks.csv,
+Participant split,"Main paper, Methods","Build, freeze and held-out groups",steps/20,elevation/results/e1/split_summary.csv,E1_contract.md
+Variance ceiling,"Main paper, Study 2; Abstract",Between-person variance and reliability ceiling,"steps/17, steps/18, steps/19",elevation/results/e0/variance_ceiling.csv; elevation/results/e0/variance_ceiling_final.csv,E1_contract.md
+Within-form decomposition,"Main paper, Study 2; Supplement E",Between-form versus within-form variance,steps/38,elevation/results/audit/b1_between_form_anova.csv; elevation/results/audit/b2_within_form_decomposition.csv,
+Problem dictionary,"Main paper, Methods",Problem-information features,steps/21,elevation/results/e2/problem_information_dictionary.csv (not in expected/),E2_spec.md
+Equal-length heterogeneity (H1),"Main paper, Study 2",Between-set true-score SD at fixed length,"steps/22, steps/23, steps/24",elevation/results/e3/h1_gate.json; elevation/results/e3b/outcome_reliability_real.csv,E3_spec.md; E3b_spec.md
+Information mechanism (H2),"Main paper, Study 2; Supplement H",Do features predict which sets are more reliable,"steps/25, steps/36",elevation/results/e4/h2_gate.json; elevation/results/e4/feature_collinearity.csv,E4_spec.md
+Mechanism sensitivity,Supplement I,Detectability and attenuation bound (simulation),"steps/29, steps/36",elevation/results/sens/sens_cells.csv,SENS_spec.md; SENS_spec_erratum.md
+Study 2 robustness,"Main paper, Ruling out alternatives; Supplement J","Partition stability, selection optimism, leave-one-feature-out, local dependence",steps/30 to steps/36,elevation/results/dispb/b_cells.csv; elevation/results/dispc/c_cells.csv,DISPB_spec.md; DISPC_spec.md
+Hierarchical re-estimation,"Main paper, Better estimation; Abstract","Partial pooling, reliability by budget",steps/26,elevation/results/e8/reliability_by_budget.csv,E8_spec.md
+External replication,"Main paper, Replicates in independent data; Abstract",Basel-Berlin Risk Study re-analysis,steps/27,elevation/results/p3_frey/*.csv,P3_spec.md
+Joint item-information model,"Main paper, Joint model; Supplement K",Joint IRT model and planted-mechanism recovery,steps/28,elevation/results/p2_irt/p2_gate.json; elevation/results/p2_irt/identifiability.csv; elevation/results/p2_irt/mechanism_regression.csv; elevation/results/p2_irt/confirmation_engine.csv,P2_spec.md; P2_spec_erratum.md
+Prior studies,"Main paper, Relation to prior findings; Supplement M",Prior results on the problem-count axis,steps/08,results/step3/prior_studies_table.csv; data/prior_studies.csv,
