@@ -3,13 +3,7 @@
 Specification written and committed before any result it governs exists. Governed by the integrity rules in INTEGRITY.md and by the frozen pre-specification in elevation/E1_contract.md. Companions: E3_spec.md (H1), E4_spec.md (H2),
 E3b_spec.md (subject-split outcome), E8_spec.md (robustness-analysis template).
 
-Battery B is a THREE-part robustness battery on the frozen Study 2 result. It re-analyses BUILD data only; it
-constructs no designs, opens no freeze, and reads no test subject (the 205 test group stays sealed). It NEVER
-overwrites the frozen pre-specification: the E3 H1 PASS (same-count heterogeneity real) and the E4 H2 FAIL
-(information mechanism not supported) stand untouched. A robustness pass strengthens them; a robustness surprise is
-reported EXPLORATORY and cannot re-write a frozen gate (INTEGRITY.md: a pre-declared gate returning a null is a valid,
-successful analysis and must not be repurposed to pass). This spec is committed before results; its gates are not
-amended after results.
+There is a THREE part robustness battery for the frozen result of Study 2. This battery re-uses results from BUILD but does not open a freeze, read a test subject, design anything or re-analyse any test (the 205 test subject remains sealed). The pre-specifications are frozen and are NEVER overwritten. Specifically the E3 H1 PASS (real heterogeneity with same number of items) and E4 H2 FAIL (information mechanism is not supported) remain unchanged. A robustness pass will enhance these results while a robustness surprise will be labelled EXPLORATORY and will NOT attempt to override any frozen result. (INTEGRITY.md: A pre-specified result returning null is a valid analysis and should not be used to pass). This spec is done before results and the results of the gates are not changed after results are available.
 
 ## 0. What Battery B is (and is NOT)
 - B1 STABILITY re-estimates the H1 between-set true-variance decomposition (sigma_set_true, ICC_set) at the E3
